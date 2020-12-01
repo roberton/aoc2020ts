@@ -1,0 +1,37 @@
+{
+  "name": "aoc2020ts",
+  "version": "0.1.0",
+  "private": true,
+  "description": "",
+  "homepage": "https://github.com/roberton/aoc2020ts",
+  "license": "UNLICENSED",
+  "author": "Roberto Nerici",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "fmt": "eslint . --no-error-on-unmatched-pattern --fix",
+    "lint": "eslint .",
+    "prego": "node run lint && npm run build",
+    "go": "node dist/index.js",
+    "test": "jest ./tests --passWithNoTests"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@tsconfig/node12": "^1.0.7",
+    "@types/node": "12.x.x",
+    "@typescript-eslint/eslint-plugin": "^4.9.0",
+    "@typescript-eslint/parser": "^4.9.0",
+    "eslint": "^7.6.0",
+    "eslint-config-standard-with-typescript": "^18.0.2",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^5.0.0",
+    "jest": "^25.5.4",
+    "ts-jest": "^26.3.0",
+    "typescript": "4.0.x"
+  },
+  "publishConfig": {
+    "access": "restricted"
+  }
+}
