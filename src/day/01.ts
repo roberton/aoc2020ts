@@ -1,14 +1,9 @@
 import { readFileSync } from 'fs';
 
-const fileName = 'src/day/01.txt';
-
 export function star1 (): void {
   console.log('Results for the puzzle for Day 1, Star 1');
 
-  const input: string = readFileSync(fileName, 'utf8');
-  const expenseEntries = input.split('\n');
-
-  console.log(`processing ${expenseEntries.length} expense entries`);
+  const expenseEntries = loadAndParseFile();
 
   for (let i = 0; i < expenseEntries.length; i++) {
     for (let j = i; j < expenseEntries.length; j++) {
@@ -25,8 +20,7 @@ export function star1 (): void {
 export function star2 (): void {
   console.log('Results for the puzzle for Day 1, Star 2');
 
-  const input: string = readFileSync(fileName, 'utf8');
-  const expenseEntries = input.split('\n');
+  const expenseEntries = loadAndParseFile();
 
   for (let i = 0; i < expenseEntries.length; i++) {
     for (let j = i; j < expenseEntries.length; j++) {
@@ -41,4 +35,13 @@ export function star2 (): void {
       }
     }
   }
+}
+
+function loadAndParseFile (): string[] {
+  const fileName = 'src/day/01.txt';
+
+  const input: string = readFileSync(fileName, 'utf8');
+  const expenseEntries = input.split('\n');
+  console.log(`processing ${expenseEntries.length} expense entries`);
+  return expenseEntries;
 }
