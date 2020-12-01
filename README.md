@@ -13,3 +13,4 @@
 # Notes for each day
 ## Day 1
 Initial implementation takes 264ms
+Parsing in load function reduces time taken to 28ms
