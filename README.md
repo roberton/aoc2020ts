@@ -4,13 +4,19 @@
 ## Structure
 
 # TODO
-[ ] use async file reading
-[ ] implement sub commands, perhaps using Commander
-[ ] refactor each day to implement an interface that index can use
-[ ] try implementing a pre-star or file loading method
 [x] implement performance metrics
+[ ] change linter to warn, not error, about unused code (it's annoying me)
+[ ] refactor each day to implement an interface that index can use
+[ ] implement sub commands, perhaps using Commander
+[ ] try implementing a pre-star or file loading method
+[ ] use async file reading
 
 # Notes for each day
 ## Day 1
 Initial implementation takes 264ms
 Parsing in load function reduces time taken to 28ms
+
+## Day 2
+Time taken about 20ms
+
+Would be good to have unit tests for the isPasswordValid() functions as well

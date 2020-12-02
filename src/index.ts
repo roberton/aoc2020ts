@@ -1,4 +1,4 @@
-import { star1, star2 } from './day/01';
+import { star1, star2 } from './day/02';
 
 const star1Start = process.hrtime();
 star1();
