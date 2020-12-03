@@ -1,8 +1,6 @@
 import { readFileSync } from 'fs';
 
-export function loadFile (): string[] {
-  const fileName = 'src/day/02.txt';
-
+export function loadFile (fileName: string): string[] {
   const input: string = readFileSync(fileName, 'utf8');
   const lines = input.split('\n');
   return lines;

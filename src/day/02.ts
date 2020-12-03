@@ -11,10 +11,12 @@ export interface PolicyAndPassword {
   password: string
 }
 
+const fileName = 'src/day/02.txt';
+
 // TODO: replace for loop with reduce
 export function star1 (): void {
   console.log('Day 2, Star 1');
-  const lines = loadFile();
+  const lines = loadFile(fileName);
   const dbEntries = lines.map(line => parsePolicyAndPassword(line));
 
   let validCount = 0;
@@ -30,7 +32,7 @@ export function star1 (): void {
 export function star2 (): void {
   console.log('Day 2, Star 2');
 
-  const lines = loadFile();
+  const lines = loadFile(fileName);
   const dbEntries = lines.map(line => parsePolicyAndPassword(line));
 
   let validCount = 0;
