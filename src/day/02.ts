@@ -1,4 +1,4 @@
-import { readFileSync } from 'fs';
+import { loadFile } from '../lib/loadFile';
 
 interface PasswordPolicy {
   letter: string
@@ -29,9 +29,6 @@ export function star1 (): void {
 
 export function star2 (): void {
   console.log('Day 2, Star 2');
-  console.log(isPasswordValid2(parsePolicyAndPassword('1-3 a: abcde')));
-  console.log(isPasswordValid2(parsePolicyAndPassword('1-3 b: cdefg')));
-  console.log(isPasswordValid2(parsePolicyAndPassword('2-9 c: ccccccccc')));
 
   const lines = loadFile();
   const dbEntries = lines.map(line => parsePolicyAndPassword(line));
@@ -44,14 +41,6 @@ export function star2 (): void {
   });
 
   console.log(`Number of valid passwords: ${validCount}`);
-}
-
-function loadFile (): string[] {
-  const fileName = 'src/day/02.txt';
-
-  const input: string = readFileSync(fileName, 'utf8');
-  const lines = input.split('\n');
-  return lines;
 }
 
 export function parsePolicyAndPassword (line: string): PolicyAndPassword {
