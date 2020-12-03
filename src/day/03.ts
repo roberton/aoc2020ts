@@ -7,21 +7,21 @@ export function star1 (): void {
   const map = loadFile(fileName);
   const treeCount = countTrees(map, 3, 1);
 
-  console.log(`Number of trees encountered = ${treeCount}`);
+  console.log(`Number of trees encountered: ${treeCount}`);
 }
 
 export function star2 (): void {
   console.log('Day 3, Star 2');
-  const map = loadFile(fileName);
+  const treeMap = loadFile(fileName);
 
-  const treeCount: number[] = [];
-  treeCount[0] = countTrees(map, 1, 1);
-  treeCount[1] = countTrees(map, 3, 1);
-  treeCount[2] = countTrees(map, 5, 1);
-  treeCount[3] = countTrees(map, 7, 1);
-  treeCount[4] = countTrees(map, 1, 2);
+  const slopes = [{x: 1, y: 1}, {x: 3, y: 1}, {x: 5, y: 1}, {x: 7, y: 1}, {x: 1, y: 2}];
+  const treeCounts: number[] = slopes.map(slope =>
+    countTrees(treeMap, slope.x, slope.y)
+  );
+  console.log(`Tree counts for each slope: ${JSON.stringify(treeCounts)}`);
 
-  console.log(treeCount);
+  const treeProduct = treeCounts.reduce((acc, count) => acc * count);
+  console.log(`Tree product: ${treeProduct}`);
 }
 
 export function isTreeAt (map: string[], x: number, y: number): boolean {
@@ -31,14 +31,12 @@ export function isTreeAt (map: string[], x: number, y: number): boolean {
 }
 
 export function countTrees (map: string[], slopeX: number, slopeY: number): number {
-  let x = 0;
-  let y = 0;
+  let x = 0, y = 0;
   let treeCount = 0;
   while ((y + slopeY) < map.length) {
     x += slopeX;
     y += slopeY;
     if (isTreeAt(map, x, y)) treeCount++;
   }
-
   return treeCount;
 }

@@ -1,4 +1,4 @@
-import { readFileSync } from 'fs';
+import { loadFile } from '../lib/loadFile';
 
 export function star1 (): void {
   console.log('Results for the puzzle for Day 1, Star 1');
@@ -39,10 +39,8 @@ export function star2 (): void {
 
 function loadAndParseFile (): number[] {
   const fileName = 'src/day/01.txt';
+  const expenseEntries = loadFile(fileName);
 
-  const input: string = readFileSync(fileName, 'utf8');
-  const expenseEntries = input.split('\n');
-  console.log(`processing ${expenseEntries.length} expense entries`);
   return expenseEntries.map(
     entry => parseInt(entry, 10)
   );

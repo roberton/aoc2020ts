@@ -5,7 +5,7 @@
 
 # TODO
 [x] implement performance metrics
-[ ] change linter to warn, not error, about unused code (it's annoying me)
+[x] change linter to warn, not error, about unused code (actually, just disabled it)
 [ ] refactor each day to implement an interface that index can use
 [ ] implement sub commands, perhaps using Commander
 [ ] try implementing a pre-star or file loading method
@@ -20,3 +20,7 @@ Parsing in load function reduces time taken to 28ms
 Time taken about 20ms
 
 Would be good to have unit tests for the isPasswordValid() functions as well
+
+## Day 3
+Time taken about 14ms
+Part 1 answer = 178
