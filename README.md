@@ -9,7 +9,7 @@
 [x] refactor each day to implement an interface that index can use
 [x] try implementing a pre-star or file loading method
 [x] neater solution for the timing code
-[ ] re-org files into puzzle / dd / index.ts + data.txt
+[x] re-org files into src/dd/index.ts + src/dd/input.txt
 [ ] implement sub commands, perhaps using Commander
 [ ] use async file reading
 

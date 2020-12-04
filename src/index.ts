@@ -1,9 +1,9 @@
 import { Day, StarFunc } from './DayInterface';
 
-import { Day1 } from './day/01';
-import { Day2 } from './day/02';
-import { Day3 } from './day/03';
-import { Day4 } from './day/04';
+import { Day1 } from './01';
+import { Day2 } from './02';
+import { Day3 } from './03';
+import { Day4 } from './04';
 import { loadFile } from './lib/loadFile';
 
 doDay(Day1);
@@ -13,7 +13,7 @@ doDay(Day4);
 
 function doDay (day: Day): void {
   const id = day.id;
-  const fileName = `src/day/${id}.txt`;
+  const fileName = `src/${id}/input.txt`;
 
   // load data
   const loadStart = process.hrtime();

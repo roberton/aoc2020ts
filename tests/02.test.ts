@@ -1,4 +1,4 @@
-import { parsePolicyAndPassword } from '../src/day/02';
+import { parsePolicyAndPassword } from '../src/02';
 
 describe('parsePolicyAndPassword', () => {
   it('should parse "1-3 a: abcd" correctly', () => {
