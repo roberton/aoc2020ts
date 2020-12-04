@@ -1,5 +1,11 @@
 import { loadFile } from '../lib/loadFile';
 
+export const Day1 = {
+  id: '01',
+  star1,
+  star2
+};
+
 export function star1 (): void {
   const expenseEntries = loadAndParseFile();
 

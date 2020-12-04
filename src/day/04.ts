@@ -1,17 +1,17 @@
 // import { Day } from '../DayInterface';
+import sumBooleanArray from '../lib/sumBooleanArray';
 
 export const Day4 = {
+  id: '04',
   star1,
   star2
 };
 
 function star1 (lines: string[]): void {
   const passportBlocks = convertLinesToPassportStrings(lines);
+  const validPassports = passportBlocks.map(passport => isValidPassport(passport));
+  const validPassportCount = sumBooleanArray(validPassports);
 
-  const validPassportCount = passportBlocks.reduce(
-    (acc, passport) => acc + (isValidPassport(passport) ? 1 : 0),
-    0
-  );
   console.log(`Number of valid passports = ${validPassportCount}`);
 }
 
@@ -37,9 +37,8 @@ export function convertLinesToPassportStrings (lines: string[]): string[] {
 export function isValidPassport (passport: string): boolean {
   // const fields = ['ecl:', 'pid:', 'eyr:', 'hcl:', 'byr:', 'iyr:', 'cid:', 'hgt:'];
   const fields = ['ecl:', 'pid:', 'eyr:', 'hcl:', 'byr:', 'iyr:', 'hgt:'];
-  const fieldCount = fields.reduce(
-    (acc: number, field) => acc + (passport.includes(field) ? 1 : 0),
-    0
-  );
+  const fieldsPresent = fields.map(field => passport.includes(field));
+  const fieldCount = sumBooleanArray(fieldsPresent);
+
   return fieldCount === 7;
 }

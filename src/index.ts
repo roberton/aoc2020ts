@@ -1,13 +1,18 @@
 import { Day } from './DayInterface';
 
-// import { Day2 } from './day/02';
-// import { Day3 } from './day/03';
+// import { Day1 } from './day/01';
+import { Day2 } from './day/02';
+import { Day3 } from './day/03';
 import { Day4 } from './day/04';
 import { loadFile } from './lib/loadFile';
 
-doDay('04', Day4);
+// doDay(Day1);
+doDay(Day2);
+doDay(Day3);
+doDay(Day4);
 
-function doDay (id: string, day: Day): void {
+function doDay (day: Day): void {
+  const id = day.id;
   const fileName = `src/day/${id}.txt`;
 
   // load data

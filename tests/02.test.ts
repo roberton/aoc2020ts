@@ -19,17 +19,3 @@ describe('parsePolicyAndPassword', () => {
     expect(result.policy).toEqual({ min: 2, max: 9, letter: 'c' });
   });
 });
-
-// describe('isPasswordValid', () => {
-//   it('should treat "1-3 a: abcde" as valid', () => {
-//     const policy: PolicyAndPassword = {
-//       password: 'abcde',
-//       letter: 'a',
-//       min: 1,
-//       max: 3
-//     };
-
-//     const input = { { min: 1, max: 3, letter: 'a' }, 'abcde' };
-//     expect(isPasswordValid(input).toBe(true);
-//   });
-// });

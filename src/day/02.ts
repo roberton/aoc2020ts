@@ -1,4 +1,7 @@
+import sumBooleanArray from '../lib/sumBooleanArray';
+
 export const Day2 = {
+  id: '02',
   star1,
   star2
 };
@@ -14,29 +17,18 @@ export interface PolicyAndPassword {
   password: string
 }
 
-// TODO: replace for loop with reduce
 function star1 (lines: string[]): void {
   const dbEntries = lines.map(line => parsePolicyAndPassword(line));
-
-  let validCount = 0;
-  dbEntries.forEach(entry => {
-    if (isPasswordValid1(entry)) {
-      validCount++;
-    }
-  });
+  const validPasswords = dbEntries.map(entry => isPasswordValid1(entry));
+  const validCount = sumBooleanArray(validPasswords);
 
   console.log(`Number of valid passwords: ${validCount}`);
 }
 
 function star2 (lines: string[]): void {
   const dbEntries = lines.map(line => parsePolicyAndPassword(line));
-
-  let validCount = 0;
-  dbEntries.forEach(entry => {
-    if (isPasswordValid2(entry)) {
-      validCount++;
-    }
-  });
+  const validPasswords = dbEntries.map(entry => isPasswordValid2(entry));
+  const validCount = sumBooleanArray(validPasswords);
 
   console.log(`Number of valid passwords: ${validCount}`);
 }
@@ -66,14 +58,7 @@ function isPasswordValid1 (entry: PolicyAndPassword): boolean {
 
 // Official Toboggan Corporate Policy
 function isPasswordValid2 (entry: PolicyAndPassword): boolean {
-  // const isCharAtMinPosition = entry.password[entry.policy.min + 1] === entry.policy.letter;
-  // const isCharAtMaxPosition = entry.password[entry.policy.max + 1] === entry.policy.letter;
-  // return (isCharAtMinPosition && !isCharAtMaxPosition) ||
-  //   (!isCharAtMinPosition && isCharAtMaxPosition);
-  //   const isCharAtMinPosition = entry.password[entry.policy.min + 1] === entry.policy.letter;
   let count = 0;
-  // console.log(`Testing ${JSON.stringify(entry)}`);
-  // console.log(`${entry.password[entry.policy.min + 1]} and ${entry.password[entry.policy.max + 1]}`);
   if (entry.password[entry.policy.min - 1] === entry.policy.letter) count++;
   if (entry.password[entry.policy.max - 1] === entry.policy.letter) count++;
   return count === 1;

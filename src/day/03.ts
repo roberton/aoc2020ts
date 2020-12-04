@@ -1,6 +1,7 @@
 // import { Day } from '../DayInterface';
 
 export const Day3 = {
+  id: '03',
   star1,
   star2
 };

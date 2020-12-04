@@ -19,6 +19,8 @@ Parsing in load function reduces time taken to 28ms
 
 ## Day 2
 Time taken about 20ms
+Part 1 answer: Number of valid passwords: 636
+Part 2 answer: Number of valid passwords: 588
 
 Would be good to have unit tests for the isPasswordValid() functions as well
 
