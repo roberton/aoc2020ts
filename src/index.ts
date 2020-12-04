@@ -1,11 +1,11 @@
 import { Day } from './DayInterface';
 
-import { Day2 } from './day/02';
-import { Day3 } from './day/03';
+// import { Day2 } from './day/02';
+// import { Day3 } from './day/03';
+import { Day4 } from './day/04';
 import { loadFile } from './lib/loadFile';
 
-doDay('02', Day2);
-doDay('03', Day3);
+doDay('04', Day4);
 
 function doDay (id: string, day: Day): void {
   const fileName = `src/day/${id}.txt`;
@@ -16,11 +16,13 @@ function doDay (id: string, day: Day): void {
   const loadTime = process.hrtime(loadStart);
 
   // do star 1
+  console.log(`Day ${id}, Star 1`);
   const star1Start = process.hrtime();
   day.star1(fileContents);
   const star1Time = process.hrtime(star1Start);
 
   // do star 2
+  console.log(`Day ${id}, Star 2`);
   const star2Start = process.hrtime();
   day.star2(fileContents);
   const star2Time = process.hrtime(star2Start);

@@ -6,15 +6,11 @@ export const Day3 = {
 };
 
 function star1 (treeMap: string[]): void {
-  console.log('Day 3, Star 1');
   const treeCount = countTrees(treeMap, 3, 1);
-
   console.log(`Number of trees encountered: ${treeCount}`);
 }
 
 function star2 (treeMap: string[]): void {
-  console.log('Day 3, Star 2');
-
   const slopes = [{ x: 1, y: 1 }, { x: 3, y: 1 }, { x: 5, y: 1 }, { x: 7, y: 1 }, { x: 1, y: 2 }];
   const treeCounts: number[] = slopes.map(slope =>
     countTrees(treeMap, slope.x, slope.y)

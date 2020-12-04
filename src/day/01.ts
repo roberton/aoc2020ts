@@ -1,8 +1,6 @@
 import { loadFile } from '../lib/loadFile';
 
 export function star1 (): void {
-  console.log('Results for the puzzle for Day 1, Star 1');
-
   const expenseEntries = loadAndParseFile();
 
   for (let i = 0; i < expenseEntries.length; i++) {
@@ -18,8 +16,6 @@ export function star1 (): void {
 }
 
 export function star2 (): void {
-  console.log('Results for the puzzle for Day 1, Star 2');
-
   const expenseEntries = loadAndParseFile();
 
   for (let i = 0; i < expenseEntries.length; i++) {

@@ -16,7 +16,6 @@ export interface PolicyAndPassword {
 
 // TODO: replace for loop with reduce
 function star1 (lines: string[]): void {
-  console.log('Day 2, Star 1');
   const dbEntries = lines.map(line => parsePolicyAndPassword(line));
 
   let validCount = 0;
@@ -30,7 +29,6 @@ function star1 (lines: string[]): void {
 }
 
 function star2 (lines: string[]): void {
-  console.log('Day 2, Star 2');
   const dbEntries = lines.map(line => parsePolicyAndPassword(line));
 
   let validCount = 0;
