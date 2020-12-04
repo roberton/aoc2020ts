@@ -40,7 +40,6 @@ export function convertLinesToPassportStrings (lines: string[]): string[] {
 }
 
 export function isValidPassport (passport: string): boolean {
-  // const fields = ['ecl:', 'pid:', 'eyr:', 'hcl:', 'byr:', 'iyr:', 'cid:', 'hgt:'];
   const fields = ['ecl:', 'pid:', 'eyr:', 'hcl:', 'byr:', 'iyr:', 'hgt:'];
   const fieldsPresent = fields.map(field => passport.includes(field));
   const fieldCount = sumBooleanArray(fieldsPresent);
@@ -48,6 +47,7 @@ export function isValidPassport (passport: string): boolean {
   return fieldCount === 7;
 }
 
+// TODO: can this be rewritten using a map of fields to functions?
 export function isValidPassport2 (passport: string): boolean {
   const fields = ['ecl:', 'pid:', 'eyr:', 'hcl:', 'byr:', 'iyr:', 'hgt:'];
   const fieldsValid: boolean[] = fields.map(field => {
@@ -68,30 +68,33 @@ export function isValidPassport2 (passport: string): boolean {
   return fieldCount === 7;
 }
 
+function isBetween (value: number, lower: number, upper: number): boolean {
+  return value >= lower && value <= upper;
+}
+
 export function isValidByr (byr: string): boolean {
   const byrVal = parseInt(byr, 10);
-  return byrVal >= 1920 && byrVal <= 2002;
+  return isBetween(byrVal, 1920, 2002);
 }
 
 export function isValidIyr (iyr: string): boolean {
   const iyrVal = parseInt(iyr, 10);
-  return iyrVal >= 2010 && iyrVal <= 2020;
+  return isBetween(iyrVal, 2010, 2020);
 }
 
 export function isValidEyr (eyr: string): boolean {
   const eyrVal = parseInt(eyr, 10);
-  return eyrVal >= 2020 && eyrVal <= 2030;
+  return isBetween(eyrVal, 2020, 2030);
 }
 
 export function isValidHgt (hgt: string): boolean {
+  const isValidHgtImperial = (hgt: number): boolean => isBetween(hgt, 59, 76);
+  const isValidHgtMetric = (hgt: number): boolean => isBetween(hgt, 150, 193);
+
   const units = hgt.slice(-2);
-  if (units === 'in') {
-    const hgtValue = parseInt(hgt, 10);
-    return hgtValue >= 59 && hgtValue <= 76;
-  } else if (units === 'cm') {
-    const hgtValue = parseInt(hgt, 10);
-    return hgtValue >= 150 && hgtValue <= 193;
-  }
+  const hgtValue = parseInt(hgt, 10);
+  if (units === 'in') return isValidHgtImperial(hgtValue);
+  if (units === 'cm') return isValidHgtMetric(hgtValue);
   return false;
 }
 
