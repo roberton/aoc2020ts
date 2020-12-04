@@ -8,7 +8,7 @@
 [x] change linter to warn, not error, about unused code (actually, just disabled it)
 [x] refactor each day to implement an interface that index can use
 [x] try implementing a pre-star or file loading method
-[ ] neater solution for the timing code
+[x] neater solution for the timing code
 [ ] re-org files into puzzle / dd / index.ts + data.txt
 [ ] implement sub commands, perhaps using Commander
 [ ] use async file reading

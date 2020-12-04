@@ -1,14 +1,14 @@
-import { Day } from './DayInterface';
+import { Day, StarFunc } from './DayInterface';
 
-// import { Day1 } from './day/01';
-// import { Day2 } from './day/02';
-// import { Day3 } from './day/03';
+import { Day1 } from './day/01';
+import { Day2 } from './day/02';
+import { Day3 } from './day/03';
 import { Day4 } from './day/04';
 import { loadFile } from './lib/loadFile';
 
-// doDay(Day1);
-// doDay(Day2);
-// doDay(Day3);
+doDay(Day1);
+doDay(Day2);
+doDay(Day3);
 doDay(Day4);
 
 function doDay (day: Day): void {
@@ -19,26 +19,32 @@ function doDay (day: Day): void {
   const loadStart = process.hrtime();
   const fileContents = loadFile(fileName);
   const loadTime = process.hrtime(loadStart);
+  const loadTimeMs = Math.round(loadTime[0] * 1000 + loadTime[1] / 1000000);
 
-  // do star 1
-  console.log(`Day ${id}, Star 1`);
-  const star1Start = process.hrtime();
-  day.star1(fileContents);
-  const star1Time = process.hrtime(star1Start);
+  console.log();
+  console.log(` Day ${id}`);
+  console.log('------------');
 
-  // do star 2
-  console.log(`Day ${id}, Star 2`);
-  const star2Start = process.hrtime();
-  day.star2(fileContents);
-  const star2Time = process.hrtime(star2Start);
+  const [star1Result, star1TimeMs] = run(day.star1, fileContents);
+  console.log(`Star 1: Answer = ${star1Result}`);
+
+  const [star2Result, star2TimeMs] = run(day.star2, fileContents);
+  console.log(`Star 2: Answer = ${star2Result}`);
 
   // display timings
-  const loadTimeMs = Math.round(loadTime[0] * 1000 + loadTime[1] / 1000000);
-  const star1TimeMs = Math.round(star1Time[0] * 1000 + star1Time[1] / 1000000);
-  const star2TimeMs = Math.round(star2Time[0] * 1000 + star2Time[1] / 1000000);
+  console.log('------------');
+  console.log(`  Load: ${loadTimeMs}ms`);
+  console.log(`Star 1: ${star1TimeMs}ms`);
+  console.log(`Star 2: ${star2TimeMs}ms`);
+  console.log(` Total: ${loadTimeMs + star1TimeMs + star2TimeMs}ms`);
+  console.log('============');
+}
 
-  console.log(`Time taken to load data: ${loadTimeMs}ms`);
-  console.log(`Time taken for star 1: ${star1TimeMs}ms`);
-  console.log(`Time taken for star 2: ${star2TimeMs}ms`);
-  console.log(`Total time taken: ${star1TimeMs + star2TimeMs}ms`);
+function run (starFunction: StarFunc, fileContents: string[]): [string, number] {
+  const timerHrStart = process.hrtime();
+  const starResult = starFunction(fileContents);
+  const starHrTime = process.hrtime(timerHrStart);
+
+  const starTimeMs = Math.round(starHrTime[0] * 1000 + starHrTime[1] / 1000000);
+  return [starResult, starTimeMs];
 }

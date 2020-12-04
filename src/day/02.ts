@@ -17,20 +17,20 @@ export interface PolicyAndPassword {
   password: string
 }
 
-function star1 (lines: string[]): void {
+function star1 (lines: string[]): string {
   const dbEntries = lines.map(line => parsePolicyAndPassword(line));
   const validPasswords = dbEntries.map(entry => isPasswordValid1(entry));
   const validCount = sumBooleanArray(validPasswords);
 
-  console.log(`Number of valid passwords: ${validCount}`);
+  return `${validCount}`;
 }
 
-function star2 (lines: string[]): void {
+function star2 (lines: string[]): string {
   const dbEntries = lines.map(line => parsePolicyAndPassword(line));
   const validPasswords = dbEntries.map(entry => isPasswordValid2(entry));
   const validCount = sumBooleanArray(validPasswords);
 
-  console.log(`Number of valid passwords: ${validCount}`);
+  return `${validCount}`;
 }
 
 export function parsePolicyAndPassword (line: string): PolicyAndPassword {

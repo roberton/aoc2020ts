@@ -1,4 +1,4 @@
-type StarFunc = (input: string[]) => void;
+export type StarFunc = (input: string[]) => string;
 
 export interface Day {
   id: string

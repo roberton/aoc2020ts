@@ -7,20 +7,20 @@ export const Day4 = {
   star2
 };
 
-function star1 (lines: string[]): void {
+function star1 (lines: string[]): string {
   const passportBlocks = convertLinesToPassportStrings(lines);
   const validPassports = passportBlocks.map(passport => isValidPassport(passport));
   const validPassportCount = sumBooleanArray(validPassports);
 
-  console.log(`Number of valid passports = ${validPassportCount}`);
+  return (`${validPassportCount}`);
 }
 
-function star2 (lines: string[]): void {
+function star2 (lines: string[]): string {
   const passportBlocks = convertLinesToPassportStrings(lines);
   const validPassports = passportBlocks.map(passport => isValidPassport2(passport));
   const validPassportCount = sumBooleanArray(validPassports);
 
-  console.log(`Number of valid passports = ${validPassportCount}`);
+  return (`${validPassportCount}`);
 }
 
 export function convertLinesToPassportStrings (lines: string[]): string[] {
