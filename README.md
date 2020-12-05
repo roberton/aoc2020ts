@@ -12,6 +12,7 @@
 [x] re-org files into src/dd/index.ts + src/dd/input.txt
 [ ] implement sub commands, perhaps using Commander
 [ ] use async file reading
+[ ] reduce number of uses of 'let' (end of day 4 there are 10)
 
 # Notes for each day
 ## Day 1
@@ -28,9 +29,15 @@ Would be good to have unit tests for the isPasswordValid() functions as well
 ## Day 3
 Time taken about 14ms
 Part 1 answer = 178
-scc: 167LOC, complexity 27
+SCC: lines of code = 167, complexity = 27
 
 ## Day 4
 Part 1 answer = 182
 Part 2. I said 110 but that's too high. 109 was correct, PID check wasn't caring about being too long
-scc: 260LOC, complexity 47
+SCC: lines of code = 260, complexity = 47
+
+## Day 5
+Part 1 answer = 951
+Part 2 answer is 653
+Time taken = 6ms
+SCC: lines of code = 297, complexity = 46
