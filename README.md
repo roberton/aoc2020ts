@@ -34,7 +34,7 @@ SCC: lines of code = 167, complexity = 27
 
 ## Day 4
 Part 1 answer = 182
-Part 2. I said 110 but that's too high. 109 was correct, PID check wasn't caring about being too long
+Part 2 answer = 109 (originally said 110, PID check wasn't caring about being too long)
 SCC: lines of code = 260, complexity = 47
 
 ## Day 5
@@ -42,3 +42,11 @@ Part 1 answer = 951
 Part 2 answer is 653
 Time taken = 6ms
 SCC: lines of code = 297, complexity = 46
+
+## Day 6
+Part 1 answer = 6633
+Part 2 answer = 3202
+Time taken = 12ms
+SCC: lines of code = 350, complexity = 49
+
+Part 1 was easy. Part 2 was nearly as easy but the change from part 1 confused me!

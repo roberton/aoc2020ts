@@ -11,7 +11,7 @@ import { loadFile } from './lib/loadFile';
 // doDay(Day1);
 // doDay(Day2);
 // doDay(Day3);
-// doDay(Day4);
+doDay(Day4);
 // doDay(Day5);
 doDay(Day6);
 

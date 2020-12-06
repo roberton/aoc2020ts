@@ -1,4 +1,7 @@
-import { convertLinesToGroups, countAnswers, convertGroupedAnswersToBinaryLine } from '../src/06';
+import { countAnswers, convertGroupedAnswersToBinaryLine } from '../src/06';
+
+// TODO! move this to a separate test
+import groupLines from '../src/lib/groupLines';
 
 const blockGroupTestData = [
   'abc',
@@ -18,9 +21,9 @@ const blockGroupTestData = [
   'b'
 ];
 
-describe('convertLinesToGroups', () => {
+describe('groupLines', () => {
   it('should return 5 blocks for the test data', () => {
-    expect(convertLinesToGroups(blockGroupTestData).length).toBe(5);
+    expect(groupLines(blockGroupTestData).length).toBe(5);
   });
 });
 

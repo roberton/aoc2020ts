@@ -1,5 +1,5 @@
 import {
-  convertLinesToPassportStrings, isValidPassport, isValidPassport2,
+  isValidPassport, isValidPassport2,
   isValidByr, isValidHgt, isValidHcl, isValidEcl, isValidPid
 } from '../src/04';
 
@@ -18,12 +18,6 @@ const testInput = [
   'hcl:#cfa07d eyr:2025 pid:166559648',
   'iyr:2011 ecl:brn hgt:59in'
 ];
-
-describe('convertLinesToPassportBlocks', () => {
-  it('should return four blocks for the test example', () => {
-    expect(convertLinesToPassportStrings(testInput).length).toBe(4);
-  });
-});
 
 describe('isValidPassport', () => {
   it('should return true for first example', () => {

@@ -1,5 +1,6 @@
 // import { Day } from '../DayInterface';
 import sumBooleanArray from '../lib/sumBooleanArray';
+import groupLines from '../lib/groupLines';
 
 export const Day4 = {
   id: '04',
@@ -8,7 +9,8 @@ export const Day4 = {
 };
 
 function star1 (lines: string[]): string {
-  const passportBlocks = convertLinesToPassportStrings(lines);
+  const passportGroupedLines = groupLines(lines);
+  const passportBlocks = passportGroupedLines.map(group => group.join(' '));
   const validPassports = passportBlocks.map(passport => isValidPassport(passport));
   const validPassportCount = sumBooleanArray(validPassports);
 
@@ -16,27 +18,12 @@ function star1 (lines: string[]): string {
 }
 
 function star2 (lines: string[]): string {
-  const passportBlocks = convertLinesToPassportStrings(lines);
+  const passportGroupedLines = groupLines(lines);
+  const passportBlocks = passportGroupedLines.map(group => group.join(' '));
   const validPassports = passportBlocks.map(passport => isValidPassport2(passport));
   const validPassportCount = sumBooleanArray(validPassports);
 
   return (`${validPassportCount}`);
-}
-
-export function convertLinesToPassportStrings (lines: string[]): string[] {
-  let curBlock: string[] = [];
-  const passportBlocks: string[] = [];
-
-  lines.forEach(line => {
-    if (line.trim().length > 0) {
-      curBlock.push(line);
-    } else {
-      passportBlocks.push(curBlock.join(' '));
-      curBlock = [];
-    }
-  });
-  passportBlocks.push(curBlock.join(' '));
-  return passportBlocks;
 }
 
 export function isValidPassport (passport: string): boolean {

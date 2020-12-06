@@ -1,4 +1,5 @@
 import sumBooleanArray from '../lib/sumBooleanArray';
+import groupLines from '../lib/groupLines';
 
 export const Day6 = {
   id: '06',
@@ -7,8 +8,8 @@ export const Day6 = {
 };
 
 function star1 (lines: string[]): string {
-  const groups = convertLinesToGroups(lines);
-  const groupAnswerFlags = groups.map(group => countAnswers(group));
+  const groups = groupLines(lines);
+  const groupAnswerFlags = groups.map(group => countAnswers(group.join('')));
 
   const answersSum = groupAnswerFlags.reduce((acc, answer) => acc + answer);
   return `${answersSum}`;
@@ -21,39 +22,6 @@ function star2 (lines: string[]): string {
 
   const answersSum = groupAnswerCounts.reduce((acc, answer) => acc + answer);
   return `${answersSum}`;
-}
-
-// TODO: look to combine this with function for day 04
-export function convertLinesToGroups (lines: string[]): string[] {
-  let curBlock: string[] = [];
-  const groupBlocks: string[] = [];
-
-  lines.forEach(line => {
-    if (line.trim().length > 0) {
-      curBlock.push(line);
-    } else {
-      groupBlocks.push(curBlock.join(''));
-      curBlock = [];
-    }
-  });
-  groupBlocks.push(curBlock.join(''));
-  return groupBlocks;
-}
-
-function groupLines (lines: string[]): string[][] {
-  let curBlock: string[] = [];
-  const groups: string[][] = [];
-
-  lines.forEach(line => {
-    if (line.trim().length > 0) {
-      curBlock.push(line);
-    } else {
-      groups.push(curBlock);
-      curBlock = [];
-    }
-  });
-  groups.push(curBlock);
-  return groups;
 }
 
 export function countAnswers (group: string): number {
