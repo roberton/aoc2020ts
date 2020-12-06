@@ -13,6 +13,7 @@
 [ ] implement sub commands, perhaps using Commander
 [ ] use async file reading
 [ ] reduce number of uses of 'let' (end of day 4 there are 10)
+[ ] look at TODO in day 04 (mapping fields to functions)
 
 # Notes for each day
 ## Day 1
