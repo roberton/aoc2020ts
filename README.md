@@ -3,6 +3,25 @@
 
 ## Structure
 
+# Command line interface
+The app can be run as a command called 'aoc'. This takes a number of options.
+You do need provide at least one of them to make it run any puzzle code; by defauly it will just tell you about the program.
+
+## Default behaviour
+Running the command on its own will display version information and information about which puzzles have been implemented.
+
+Example
+`aoc`
+>>> Advent of Code 2020.
+>>> Puzzles implemented: 01, 02, 03, 04, 05, 06, 07
+>>> To calculate answers to a puzzle, run with the command-line option --day <day>. For example:
+>>> 'aoc --day 01'
+>>> to calculate the answer to the puzzle for Day 1 (both stars)
+>>> Type 'aoc --help' for more help.
+
+## Calculating puzzle outputs
+TODO
+
 # TODO
 [x] implement performance metrics
 [x] change linter to warn, not error, about unused code (actually, just disabled it)
