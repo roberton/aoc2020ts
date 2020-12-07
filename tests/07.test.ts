@@ -1,4 +1,4 @@
-import { buildRuleFromRuleText, canContain, Bag, Rule, Requirement } from '../src/07';
+import { buildRuleFromRuleText, canContain, Bag, Rule, countBagsNeeded } from '../src/07';
 
 describe('buildRuleFromRuleText', () => {
   it('should build rule with two requirements for first example', () => {
@@ -67,5 +67,12 @@ describe('canContain', () => {
 
   it('returns false for dotted black bag', () => {
     expect(canContain(rules[8], shinyGoldBag, rules)).toBe(false);
+  });
+
+  // TODO: this is in the wrong place
+  describe('countBagsNeeded', () => {
+    it('returns 33 bags for example data', () => {
+      expect(countBagsNeeded(shinyGoldBag, rules)).toBe(33);
+    });
   });
 });

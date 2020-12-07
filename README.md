@@ -14,6 +14,7 @@
 [ ] reduce number of uses of 'let' (end of day 4 there are 10, day 6: 14)
 [ ] use async file reading
 [x] look at TODO in day 04 (mapping fields to functions)
+[ ] fix up test code for day 07 and extend it
 
 # Notes for each day
 ## Day 1
@@ -52,3 +53,9 @@ Time taken = 12ms
 SCC: lines of code = 350, complexity = 49
 
 Part 1 was easy. Part 2 was nearly as easy but the change from part 1 confused me!
+
+## Day 7
+Part 1 anwer = 246
+Part 2 answer = 2976
+Take taken = 1081ms
+SCC: lines of code = 427, complexity = 56

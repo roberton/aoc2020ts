@@ -16,7 +16,12 @@ function star1 (lines: string[]): string {
 }
 
 function star2 (lines: string[]): string {
-  return 'TODO';
+  const rules = lines.map(line => buildRuleFromRuleText(line));
+  const shinyGoldBag: Bag = { colour: 'shiny gold' };
+  const bagsNeededForAShinyGoldBag = countBagsNeeded(shinyGoldBag, rules);
+  const bagsNeededNotIncludingTheShinyGoldBagItself = bagsNeededForAShinyGoldBag - 1;
+
+  return `${bagsNeededNotIncludingTheShinyGoldBagItself}`;
 }
 
 export interface Bag {
@@ -39,7 +44,7 @@ export function buildRuleFromRuleText (ruleText: string): Rule {
   const requirementStrings = requirementsString.split(', ');
 
   const bag: Bag = { colour: bagColour };
-  const requirements = requirementStrings.map(reqString => buildRequirementFromString(reqString));
+  const requirements = requirementsString === 'no other bags.' ? [] : requirementStrings.map(reqString => buildRequirementFromString(reqString));
 
   return {
     bag,
@@ -69,4 +74,24 @@ export function canContain (rule: Rule, bag: Bag, rules: Rule[]): boolean {
     const containedBagRules = rules.filter(rule => rule.bag.colour === requirement.bag.colour);
     return containedBagRules.some(containedBagRule => canContain(containedBagRule, bag, rules));
   });
+}
+
+// counts the bags needed for this bag, and the bags within each of those etc
+export function countBagsNeeded (bag: Bag, rules: Rule[]): number {
+  console.log(`countBagsNeeded(${bag.colour})`);
+  const ruleForThisBag: Rule = rules.filter(rule => rule.bag.colour === bag.colour)[0];
+
+  if (ruleForThisBag.requirements.length === 0) {
+    console.log(`countBagsNeeded(${bag.colour}) is a leaf node, returning 1`);
+    return 1;
+  }
+
+  // TODO: can this be replaced with a map and a reduce?
+  let bagsNeeded = 1;
+  ruleForThisBag.requirements.forEach(rule => {
+    bagsNeeded += rule.quantity * countBagsNeeded(rule.bag, rules);
+  });
+
+  console.log(`countBagsNeeded(${bag.colour}) is branch node, returning ${bagsNeeded}`);
+  return bagsNeeded;
 }
