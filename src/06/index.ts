@@ -34,29 +34,22 @@ export function countAnswers (group: string): number {
   return sumBooleanArray(answersArray);
 }
 
-function convertAnswersToFlags (answerLine: string): boolean[] {
+function convertAnswersToBitmap (answerLine: string): number {
   const questions = 'abcdefghijklmnopqrstuvwxyz'.split('');
-  const answersArray = questions.map(question => answerLine.includes(question));
-  return answersArray;
+  const answersBitmap = questions.reduce(
+    (acc, question, index) => answerLine.includes(question) ? acc + 2 ** (25 - index) : acc,
+    0
+  );
+  return answersBitmap;
 }
 
 export function convertGroupedAnswersToBinaryLine (answerGroup: string[]): number {
-  // set binary to be all true initially
-  let groupBinaryAnswers = 0b11111111111111111111111111;
+  let groupBinaryAnswers = 0b11111111111111111111111111; // set binary to be all true initially
   answerGroup.forEach(answerLine => {
-    const answerFlags = convertAnswersToFlags(answerLine);
-    const answerBinary = convertFlagsToBinary(answerFlags);
+    const answerBinary = convertAnswersToBitmap(answerLine);
     groupBinaryAnswers = groupBinaryAnswers & answerBinary;
   });
   return groupBinaryAnswers;
-}
-
-function convertFlagsToBinary (answerFlags: boolean[]): number {
-  let binary = 0;
-  for (let i = 0; i < 26; i++) {
-    if (answerFlags[i]) binary += 2 ** (25 - i);
-  }
-  return binary;
 }
 
 function countOnesInBinaryNumber (binaryNumber: number): number {

@@ -84,11 +84,10 @@ export function countBagsNeeded (bag: Bag, rules: Rule[]): number {
     return 1;
   }
 
-  // TODO: can this be replaced with a map and a reduce?
-  let bagsNeeded = 1;
-  ruleForThisBag.requirements.forEach(rule => {
-    bagsNeeded += rule.quantity * countBagsNeeded(rule.bag, rules);
-  });
+  const bagsNeeded = ruleForThisBag.requirements.map(
+    rule => rule.quantity * countBagsNeeded(rule.bag, rules)
+  );
+  const totalBagsNeeded = 1 + bagsNeeded.reduce((acc, count) => acc + count);
 
-  return bagsNeeded;
+  return totalBagsNeeded;
 }
