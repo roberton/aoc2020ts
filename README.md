@@ -10,11 +10,12 @@
 [x] try implementing a pre-star or file loading method
 [x] neater solution for the timing code
 [x] re-org files into src/dd/index.ts + src/dd/input.txt
+[x] fix up test code for day 07 and extend it
 [ ] implement command line runner, perhaps using Commander
 [ ] reduce number of uses of 'let' (end of day 4 there are 10, day 6: 14)
-[ ] use async file reading
 [x] look at TODO in day 04 (mapping fields to functions)
-[ ] fix up test code for day 07 and extend it
+[ ] where a puzzle has types, move them to their own files
+[ ] use async file reading
 
 # Notes for each day
 ## Day 1

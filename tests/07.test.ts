@@ -1,5 +1,27 @@
 import { buildRuleFromRuleText, canContain, Bag, Rule, countBagsNeeded } from '../src/07';
 
+const ruleTexts1 = [
+  'light red bags contain 1 bright white bag, 2 muted yellow bags.',
+  'dark orange bags contain 3 bright white bags, 4 muted yellow bags.',
+  'bright white bags contain 1 shiny gold bag.',
+  'muted yellow bags contain 2 shiny gold bags, 9 faded blue bags.',
+  'shiny gold bags contain 1 dark olive bag, 2 vibrant plum bags.',
+  'dark olive bags contain 3 faded blue bags, 4 dotted black bags.',
+  'vibrant plum bags contain 5 faded blue bags, 6 dotted black bags.',
+  'faded blue bags contain no other bags.',
+  'dotted black bags contain no other bags.'
+];
+
+const ruleTexts2 = [
+  'shiny gold bags contain 2 dark red bags.',
+  'dark red bags contain 2 dark orange bags.',
+  'dark orange bags contain 2 dark yellow bags.',
+  'dark yellow bags contain 2 dark green bags.',
+  'dark green bags contain 2 dark blue bags.',
+  'dark blue bags contain 2 dark violet bags.',
+  'dark violet bags contain no other bags.'
+];
+
 describe('buildRuleFromRuleText', () => {
   it('should build rule with two requirements for first example', () => {
     const ruleText = 'light red bags contain 1 bright white bag, 2 muted yellow bags';
@@ -16,21 +38,10 @@ describe('buildRuleFromRuleText', () => {
 
 describe('canContain', () => {
   const shinyGoldBag: Bag = { colour: 'shiny gold' };
-  const ruleTexts = [
-    'light red bags contain 1 bright white bag, 2 muted yellow bags.',
-    'dark orange bags contain 3 bright white bags, 4 muted yellow bags.',
-    'bright white bags contain 1 shiny gold bag.',
-    'muted yellow bags contain 2 shiny gold bags, 9 faded blue bags.',
-    'shiny gold bags contain 1 dark olive bag, 2 vibrant plum bags.',
-    'dark olive bags contain 3 faded blue bags, 4 dotted black bags.',
-    'vibrant plum bags contain 5 faded blue bags, 6 dotted black bags.',
-    'faded blue bags contain no other bags.',
-    'dotted black bags contain no other bags.'
-  ];
   let rules: Rule[] = [];
 
   beforeAll(() => {
-    rules = ruleTexts.map(ruleLine => buildRuleFromRuleText(ruleLine));
+    rules = ruleTexts1.map(ruleLine => buildRuleFromRuleText(ruleLine));
   });
 
   it('returns true for light red bag (indirect match)', () => {
@@ -68,11 +79,24 @@ describe('canContain', () => {
   it('returns false for dotted black bag', () => {
     expect(canContain(rules[8], shinyGoldBag, rules)).toBe(false);
   });
+});
 
-  // TODO: this is in the wrong place
-  describe('countBagsNeeded', () => {
-    it('returns 33 bags for example data', () => {
-      expect(countBagsNeeded(shinyGoldBag, rules)).toBe(33);
+describe('countBagsNeeded', () => {
+  const shinyGoldBag: Bag = { colour: 'shiny gold' };
+
+  describe('for example rule set 1', () => {
+    const rules = ruleTexts1.map(ruleLine => buildRuleFromRuleText(ruleLine));
+
+    it('returns 32 bags for example data (plus the bag itself)', () => {
+      expect(countBagsNeeded(shinyGoldBag, rules)).toBe(32 + 1);
+    });
+  });
+
+  describe('for example rule set 2', () => {
+    const rules = ruleTexts2.map(ruleLine => buildRuleFromRuleText(ruleLine));
+
+    it('returns 126 bags for example data (plus the bag itself)', () => {
+      expect(countBagsNeeded(shinyGoldBag, rules)).toBe(126 + 1);
     });
   });
 });

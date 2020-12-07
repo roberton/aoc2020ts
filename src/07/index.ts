@@ -78,11 +78,9 @@ export function canContain (rule: Rule, bag: Bag, rules: Rule[]): boolean {
 
 // counts the bags needed for this bag, and the bags within each of those etc
 export function countBagsNeeded (bag: Bag, rules: Rule[]): number {
-  console.log(`countBagsNeeded(${bag.colour})`);
   const ruleForThisBag: Rule = rules.filter(rule => rule.bag.colour === bag.colour)[0];
 
   if (ruleForThisBag.requirements.length === 0) {
-    console.log(`countBagsNeeded(${bag.colour}) is a leaf node, returning 1`);
     return 1;
   }
 
@@ -92,6 +90,5 @@ export function countBagsNeeded (bag: Bag, rules: Rule[]): number {
     bagsNeeded += rule.quantity * countBagsNeeded(rule.bag, rules);
   });
 
-  console.log(`countBagsNeeded(${bag.colour}) is branch node, returning ${bagsNeeded}`);
   return bagsNeeded;
 }
