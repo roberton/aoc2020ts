@@ -17,8 +17,12 @@ function star1 (lines: string[]): string {
 
 function star2 (lines: string[]): string {
   const groupedAnswers = groupLines(lines);
-  const groupedBinaryAnswers = groupedAnswers.map(groupedAnswer => convertGroupedAnswersToBinaryLine(groupedAnswer));
-  const groupAnswerCounts = groupedBinaryAnswers.map(binaryAnswer => countOnesInBinaryNumber(binaryAnswer));
+  const groupedBinaryAnswers = groupedAnswers.map(
+    groupedAnswer => convertGroupedAnswersToBinaryLine(groupedAnswer)
+  );
+  const groupAnswerCounts = groupedBinaryAnswers.map(
+    binaryAnswer => countOnesInBinaryNumber(binaryAnswer)
+  );
 
   const answersSum = groupAnswerCounts.reduce((acc, answer) => acc + answer);
   return `${answersSum}`;

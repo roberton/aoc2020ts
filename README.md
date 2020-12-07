@@ -10,13 +10,15 @@
 [x] try implementing a pre-star or file loading method
 [x] neater solution for the timing code
 [x] re-org files into src/dd/index.ts + src/dd/input.txt
-[ ] implement sub commands, perhaps using Commander
+[ ] implement command line runner, perhaps using Commander
+[ ] reduce number of uses of 'let' (end of day 4 there are 10, day 6: 14)
 [ ] use async file reading
-[ ] reduce number of uses of 'let' (end of day 4 there are 10)
-[ ] look at TODO in day 04 (mapping fields to functions)
+[x] look at TODO in day 04 (mapping fields to functions)
 
 # Notes for each day
 ## Day 1
+Part 1 answer = 889779
+Part 2 answer = 76110336
 Initial implementation takes 264ms
 Parsing in load function reduces time taken to 28ms
 

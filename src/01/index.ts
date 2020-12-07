@@ -4,20 +4,19 @@ export const Day1 = {
   star2
 };
 
+// TODO: can this be rewritten to use Array.some()?
 export function star1 (lines: string[]): string {
   const expenseEntries = parseFile(lines);
+  let answer = 'ERROR';
 
-  for (let i = 0; i < expenseEntries.length; i++) {
-    for (let j = i; j < expenseEntries.length; j++) {
-      const lhsValue = expenseEntries[i];
-      const rhsValue = expenseEntries[j];
-
+  expenseEntries.forEach((lhsValue, i) => {
+    expenseEntries.slice(i).forEach(rhsValue => {
       if (lhsValue + rhsValue === 2020) {
-        return `${lhsValue * rhsValue}`;
+        answer = `${lhsValue * rhsValue}`;
       }
-    }
-  }
-  return 'ERROR';
+    });
+  });
+  return answer;
 }
 
 export function star2 (lines: string[]): string {

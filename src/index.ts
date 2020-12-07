@@ -8,12 +8,12 @@ import { Day4 } from './04';
 import { Day6 } from './06';
 import { loadFile } from './lib/loadFile';
 
-// doDay(Day1);
+doDay(Day1);
 // doDay(Day2);
 // doDay(Day3);
-doDay(Day4);
+// doDay(Day4);
 // doDay(Day5);
-doDay(Day6);
+// doDay(Day6);
 
 function doDay (day: Day): void {
   const id = day.id;
