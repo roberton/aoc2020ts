@@ -4,16 +4,18 @@ import { Day1 } from './01';
 import { Day2 } from './02';
 import { Day3 } from './03';
 import { Day4 } from './04';
-// import { Day5 } from './05';
+import { Day5 } from './05';
 import { Day6 } from './06';
+import { Day7 } from './07';
 import { loadFile } from './lib/loadFile';
 
-doDay(Day1);
+// doDay(Day1);
 // doDay(Day2);
 // doDay(Day3);
 // doDay(Day4);
 // doDay(Day5);
 // doDay(Day6);
+doDay(Day7);
 
 function doDay (day: Day): void {
   const id = day.id;
