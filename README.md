@@ -75,7 +75,13 @@ SCC: lines of code = 350, complexity = 49
 Part 1 was easy. Part 2 was nearly as easy but the change from part 1 confused me!
 
 ## Day 7
-Part 1 anwer = 246
+Part 1 answer = 246
 Part 2 answer = 2976
 Take taken = 1081ms
 SCC: lines of code = 427, complexity = 56
+
+## Day 8
+Part 1 answer = 1420
+Part 2 answer = ?
+Time taken = 1ms
+SCC: LOC = 492, complexity = 68

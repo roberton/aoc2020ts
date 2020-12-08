@@ -1,6 +1,6 @@
 {
   "name": "aoc2020ts",
-  "version": "0.7.3",
+  "version": "0.8.0",
   "private": true,
   "description": "",
   "homepage": "https://github.com/roberton/aoc2020ts",
@@ -11,14 +11,17 @@
     "aoc": "./dist/index.js"
   },
   "scripts": {
+    "prebuild": "eslint .",
     "build": "tsc",
     "fmt": "eslint . --no-error-on-unmatched-pattern --fix",
     "lint": "eslint .",
     "prego": "eslint . && tsc",
+    "go": "node dist/index.js",
     "start": "node dist/index.js",
     "test": "jest ./tests --passWithNoTests"
   },
   "dependencies": {
+    "@types/commander": "^2.12.2",
     "commander": "^6.2.0"
   },
   "devDependencies": {
