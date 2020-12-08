@@ -1,4 +1,4 @@
-import { parseInstruction, Instruction } from '../src/08';
+import { parseInstruction, Instruction, star2 } from '../src/08';
 
 describe('parseInstructions', () => {
   it('should parse "nop +0" corectly', () => {
@@ -17,5 +17,22 @@ describe('parseInstructions', () => {
     const instruction = parseInstruction('jmp -3');
     expect(instruction.opCode).toBe('jmp');
     expect(instruction.argument).toBe(-3);
+  });
+});
+
+describe('star2', () => {
+  const testLines = [
+    'nop +0',
+    'acc +1',
+    'jmp +4',
+    'acc +3',
+    'jmp -3',
+    'acc -99',
+    'acc +1',
+    'jmp -4',
+    'acc +6'
+  ];
+  it('should find that patching example program at location 7 results in acc of 8', () => {
+    expect(star2(testLines)).toBe('8');
   });
 });

@@ -82,6 +82,8 @@ SCC: lines of code = 427, complexity = 56
 
 ## Day 8
 Part 1 answer = 1420
-Part 2 answer = ?
-Time taken = 1ms
-SCC: LOC = 492, complexity = 68
+Part 2 answer = 1245
+Time taken = 313ms
+SCC: LOC = 538, complexity = 77
+
+Part 1 was fun. Part 2 told me about the copying of arrays and regrets on trying building immutable code.
