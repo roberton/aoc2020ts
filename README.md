@@ -29,18 +29,19 @@ TODO
 ## TODO
 Scratch "to do" list (there are also TODO comments in the code, hopefully not many!):
 
-[x] implement performance metrics
-[x] change linter to warn, not error, about unused code (actually, just disabled it)
-[x] refactor each day to implement an interface that index can use
-[x] try implementing a pre-star or file loading method
-[x] neater solution for the timing code
-[x] re-org files into src/dd/index.ts + src/dd/input.txt
-[x] fix up test code for day 07 and extend it
-[ ] implement command line runner, perhaps using Commander
-[ ] reduce number of uses of 'let' (end of day 4 there are 10, day 6: 14)
-[x] look at TODO in day 04 (mapping fields to functions)
-[ ] where a puzzle has types, move them to their own files
-[ ] use async file reading
+- [x] implement performance metrics
+- [x] change linter to warn, not error, about unused code (actually, just disabled it)
+- [x] refactor each day to implement an interface that index can use
+- [x] try implementing a pre-star or file loading method
+- [x] neater solution for the timing code
+- [x] re-org files into src/dd/index.ts + src/dd/input.txt
+- [x] fix up test code for day 07 and extend it
+- [x] implement command line runner, perhaps using Commander
+- [x] look at TODO in day 04 (mapping fields to functions)
+- [ ] where a puzzle has types, move them to their own files
+- [ ] add help and finish usage information in this file
+- [ ] reduce number of uses of 'let' (end of day 4 there are 10, day 6: 14)
+- [ ] use async file reading
 
 # Notes for each day
 ## Day 1

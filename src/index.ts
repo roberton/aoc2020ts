@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-import { Day, StarFunc } from './DayInterface';
 import { program } from 'commander';
 
+import { Day, StarFunc } from './DayInterface';
 import { Day1 } from './01';
 import { Day2 } from './02';
 import { Day3 } from './03';
@@ -12,15 +12,20 @@ import { Day7 } from './07';
 import { Day8 } from './08';
 import { loadFile } from './lib/loadFile';
 
+const days = [Day1, Day2, Day3, Day4, Day5, Day6, Day7, Day8];
+
 program.version('0.8.0')
   .option('-d  --day <dayId>', 'ID of the day for which to calculate the puzzle')
   .option('-t --time', 'display timing information')
   .parse(process.argv);
 
-const days = [Day1, Day2, Day3, Day4, Day5, Day6, Day7, Day8];
-if (program.day !== undefined) {
-  const daysToRun = days.filter(day => day.id === program.day);
-  daysToRun.forEach(day => doDay(day));
+const daysToRun = whichDaysToRun(days, program.day);
+daysToRun.forEach(day => doDay(day));
+
+function whichDaysToRun (days: Day[], dayId: any): Day[] {
+  if (dayId === 'all') return days;
+  if (dayId === 'latest') return [days[days.length - 1]];
+  return days.filter(day => day.id === dayId);
 }
 
 function doDay (day: Day): void {
@@ -44,7 +49,6 @@ function doDay (day: Day): void {
   console.log(`Star 2: Answer = ${star2Result}`);
 
   if (program.time !== undefined) {
-    // display timings
     console.log('------------');
     console.log(`  Load: ${loadTimeMs}ms`);
     console.log(`Star 1: ${star1TimeMs}ms`);
