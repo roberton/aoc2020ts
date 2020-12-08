@@ -58,8 +58,10 @@ function isPasswordValid1 (entry: PolicyAndPassword): boolean {
 
 // Official Toboggan Corporate Policy
 function isPasswordValid2 (entry: PolicyAndPassword): boolean {
-  let count = 0;
-  if (entry.password[entry.policy.min - 1] === entry.policy.letter) count++;
-  if (entry.password[entry.policy.max - 1] === entry.policy.letter) count++;
-  return count === 1;
+  const pos1HasGivenLetter = (entry.password[entry.policy.min - 1] === entry.policy.letter);
+  const pos2HasGivenLetter = (entry.password[entry.policy.max - 1] === entry.policy.letter);
+  return (
+    (pos1HasGivenLetter && !pos2HasGivenLetter) ||
+    (!pos1HasGivenLetter && pos2HasGivenLetter)
+  );
 }
