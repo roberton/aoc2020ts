@@ -31,7 +31,6 @@ export function star2 (lines: string[]): string {
     const patchedProgram = patchProgram(patch, program);
     const [exitStaus, accumulator] = runProgramUntilCompletion(patchedProgram);
     if (exitStaus === 'terminated') {
-      console.log(`Found patched program terminates. Patched instruction at ${index}. Accumulator = ${accumulator}`);
       accResult = accumulator;
     }
   });
@@ -39,9 +38,10 @@ export function star2 (lines: string[]): string {
   return `${accResult}`;
 }
 
-// TODO: can opCode be further restricted?
+type OpCode = 'acc' | 'jmp' | 'nop';
+
 export interface Instruction {
-  opCode: string
+  opCode: OpCode
   argument: number
 }
 
@@ -54,16 +54,24 @@ interface Program {
 type ExitStatus = 'terminated' | 'loop';
 
 interface Patch {
-  opCode: string
+  opCode: OpCode
   location: number
 }
 
 export function parseInstruction (line: string): Instruction {
-  const [opCode, argString] = line.split(' ');
+  const [opCodeString, argString] = line.split(' ');
   return {
-    opCode,
+    opCode: parseOpCodeString(opCodeString),
     argument: parseInt(argString)
   };
+}
+
+// TODO: there must be a better way!
+function parseOpCodeString (opCodeString: string): OpCode {
+  if (opCodeString === 'nop') return 'nop';
+  if (opCodeString === 'acc') return 'acc';
+  if (opCodeString === 'jmp') return 'jmp';
+  throw new Error('Invalid opcode string found in parseOpCodeString');
 }
 
 function runProgramUntilCompletion (program: Program): [ExitStatus, number] {
@@ -104,7 +112,7 @@ function execute (program: Program): Program {
 }
 
 function makePatch (instruction: Instruction, location: number): Patch {
-  let opCode = 'acc';
+  let opCode: OpCode = 'acc';
   if (instruction.opCode === 'jmp') opCode = 'nop';
   if (instruction.opCode === 'nop') opCode = 'jmp';
   return {

@@ -12,17 +12,23 @@ Running the command on its own will display version information and information 
 
 Example
 `aoc`
->>> Advent of Code 2020.
->>> Puzzles implemented: 01, 02, 03, 04, 05, 06, 07
->>> To calculate answers to a puzzle, run with the command-line option --day <day>. For example:
->>> 'aoc --day 01'
->>> to calculate the answer to the puzzle for Day 1 (both stars)
->>> Type 'aoc --help' for more help.
+
+```
+Advent of Code 2020.
+Puzzles implemented: 01, 02, 03, 04, 05, 06, 07
+To calculate answers to a puzzle, run with the command-line option --day <day>. For example:
+'aoc --day 01'
+to calculate the answer to the puzzle for Day 1 (both stars)
+Type 'aoc --help' for more help.
+```
 
 ## Calculating puzzle outputs
 TODO
 
-# TODO
+# Notes and progress
+## TODO
+Scratch "to do" list (there are also TODO comments in the code, hopefully not many!):
+
 [x] implement performance metrics
 [x] change linter to warn, not error, about unused code (actually, just disabled it)
 [x] refactor each day to implement an interface that index can use
@@ -38,27 +44,28 @@ TODO
 
 # Notes for each day
 ## Day 1
-Part 1 answer = 889779
-Part 2 answer = 76110336
-Initial implementation takes 264ms
-Parsing in load function reduces time taken to 28ms
+- Part 1 answer = 889779
+- Part 2 answer = 76110336
+- Initial implementation takes 264ms. Parsing in load function reduces time taken to 28ms
 
 ## Day 2
-Time taken about 20ms
-Part 1 answer: Number of valid passwords: 636
-Part 2 answer: Number of valid passwords: 588
+- Time taken about 20ms
+- Part 1 answer: Number of valid passwords: 636
+- Part 2 answer: Number of valid passwords: 588
 
 Would be good to have unit tests for the isPasswordValid() functions as well
 
 ## Day 3
-Time taken about 14ms
-Part 1 answer = 178
-SCC: lines of code = 167, complexity = 27
+- Time taken about 14ms
+- Part 1 answer = 178
+- SCC: LOC = 167, complexity = 27
 
 ## Day 4
-Part 1 answer = 182
-Part 2 answer = 109 (originally said 110, PID check wasn't caring about being too long)
-SCC: lines of code = 260, complexity = 47
+- Part 1 answer = 182
+- Part 2 answer = 109
+- SCC: LOC = 260, complexity = 47
+
+The original part 2 answer was 110; PID check wasn't caring about being too long.
 
 ## Day 5
 Part 1 answer = 951
