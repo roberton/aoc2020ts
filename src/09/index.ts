@@ -1,3 +1,5 @@
+import { findPairForSumValue } from '../lib/findPairForSumValue';
+
 export const Day9 = {
   id: '09',
   star1,
@@ -26,23 +28,12 @@ export function findErrorValue (numbers: number[], windowSize: number): number {
   for (let testIndex = windowSize; testIndex < numbers.length; testIndex++) {
     const windowStart = testIndex - windowSize;
     const testValue = numbers[testIndex];
-    if (!isValueSumOfAnyPair(testValue, numbers.slice(windowStart, testIndex))) {
+    const sumPair = findPairForSumValue(testValue, numbers.slice(windowStart, testIndex));
+    if (sumPair.length !== 2) {
       return numbers[testIndex];
     }
   }
-  return -1; // error case, shouldn't happen
-}
-
-export function isValueSumOfAnyPair (testValue: number, numbers: number[]): boolean {
-  let isSum = false;
-  numbers.forEach((lhsValue, i) => {
-    numbers.slice(i).forEach(rhsValue => {
-      if (lhsValue + rhsValue === testValue) {
-        isSum = true;
-      }
-    });
-  });
-  return isSum;
+  throw new Error('findErrorValue() failed to find an error value');
 }
 
 function sum (numbers: number[]): number {

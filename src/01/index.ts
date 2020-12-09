@@ -1,3 +1,5 @@
+import { findPairForSumValue } from '../lib/findPairForSumValue';
+
 export const Day1 = {
   id: '01',
   star1,
@@ -7,16 +9,9 @@ export const Day1 = {
 // TODO: can this be rewritten to use Array.some()?
 export function star1 (lines: string[]): string {
   const expenseEntries = parseFile(lines);
-  let answer = 'ERROR';
 
-  expenseEntries.forEach((lhsValue, i) => {
-    expenseEntries.slice(i).forEach(rhsValue => {
-      if (lhsValue + rhsValue === 2020) {
-        answer = `${lhsValue * rhsValue}`;
-      }
-    });
-  });
-  return answer;
+  const [value1, value2] = findPairForSumValue(2020, expenseEntries);
+  return `${value1 * value2}`;
 }
 
 export function star2 (lines: string[]): string {

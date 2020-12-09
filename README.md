@@ -101,4 +101,4 @@ Part 1 was fun. Part 2 told me about the copying of arrays and regrets on trying
 - Part 1 answer = 90433990
 - Part 2 answer = 11691646
 - Time taken = 359ms
-- SCC: LOC = 598, complexity = 84
+- SCC: LOC = 594, complexity = 83
