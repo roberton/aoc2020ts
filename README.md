@@ -40,6 +40,7 @@ Scratch "to do" list (there are also TODO comments in the code, hopefully not ma
 - [x] look at TODO in day 04 (mapping fields to functions)
 - [ ] where a puzzle has types, move them to their own files
 - [ ] add help and finish usage information in this file
+- [ ] make library function for finding pair of numbers that match a target (see days 01 and 09)
 - [ ] reduce number of uses of 'let' (end of day 4 there are 10, day 6: 14)
 - [ ] use async file reading
 
@@ -92,6 +93,11 @@ SCC: lines of code = 427, complexity = 56
 Part 1 answer = 1420
 Part 2 answer = 1245
 Time taken = 313ms
-SCC: LOC = 538, complexity = 77
+SCC: LOC = 544, complexity = 77
 
 Part 1 was fun. Part 2 told me about the copying of arrays and regrets on trying building immutable code.
+
+## Day 9
+Part answer = 90433990
+Time taken = 7ms
+SCC: LOC = 581, complexity = 80

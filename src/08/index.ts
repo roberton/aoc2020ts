@@ -61,17 +61,9 @@ interface Patch {
 export function parseInstruction (line: string): Instruction {
   const [opCodeString, argString] = line.split(' ');
   return {
-    opCode: parseOpCodeString(opCodeString),
+    opCode: opCodeString as OpCode,
     argument: parseInt(argString)
   };
-}
-
-// TODO: there must be a better way!
-function parseOpCodeString (opCodeString: string): OpCode {
-  if (opCodeString === 'nop') return 'nop';
-  if (opCodeString === 'acc') return 'acc';
-  if (opCodeString === 'jmp') return 'jmp';
-  throw new Error('Invalid opcode string found in parseOpCodeString');
 }
 
 function runProgramUntilCompletion (program: Program): [ExitStatus, number] {
@@ -112,9 +104,12 @@ function execute (program: Program): Program {
 }
 
 function makePatch (instruction: Instruction, location: number): Patch {
-  let opCode: OpCode = 'acc';
-  if (instruction.opCode === 'jmp') opCode = 'nop';
-  if (instruction.opCode === 'nop') opCode = 'jmp';
+  const patchMappings = {
+    acc: 'acc', // this stays the same
+    nop: 'jmp',
+    jmp: 'nop'
+  };
+  const opCode = patchMappings[instruction.opCode] as OpCode;
   return {
     opCode,
     location

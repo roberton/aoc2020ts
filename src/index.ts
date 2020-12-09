@@ -10,9 +10,10 @@ import { Day5 } from './05';
 import { Day6 } from './06';
 import { Day7 } from './07';
 import { Day8 } from './08';
+import { Day9 } from './09';
 import { loadFile } from './lib/loadFile';
 
-const days = [Day1, Day2, Day3, Day4, Day5, Day6, Day7, Day8];
+const days = [Day1, Day2, Day3, Day4, Day5, Day6, Day7, Day8, Day9];
 
 program.version('0.8.0')
   .option('-d  --day <dayId>', 'ID of the day for which to calculate the puzzle')
