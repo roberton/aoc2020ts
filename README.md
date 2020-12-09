@@ -70,34 +70,35 @@ Would be good to have unit tests for the isPasswordValid() functions as well
 The original part 2 answer was 110; PID check wasn't caring about being too long.
 
 ## Day 5
-Part 1 answer = 951
-Part 2 answer is 653
-Time taken = 6ms
-SCC: lines of code = 297, complexity = 46
+- Part 1 answer = 951
+- Part 2 answer is 653
+- Time taken = 6ms
+- SCC: lines of code = 297, complexity = 46
 
 ## Day 6
-Part 1 answer = 6633
-Part 2 answer = 3202
-Time taken = 12ms
-SCC: lines of code = 350, complexity = 49
+- Part 1 answer = 6633
+- Part 2 answer = 3202
+- Time taken = 12ms
+- SCC: lines of code = 350, complexity = 49
 
 Part 1 was easy. Part 2 was nearly as easy but the change from part 1 confused me!
 
 ## Day 7
-Part 1 answer = 246
-Part 2 answer = 2976
-Take taken = 1081ms
-SCC: lines of code = 427, complexity = 56
+- Part 1 answer = 246
+- Part 2 answer = 2976
+- Take taken = 1081ms
+- SCC: lines of code = 427, complexity = 56
 
 ## Day 8
-Part 1 answer = 1420
-Part 2 answer = 1245
-Time taken = 313ms
-SCC: LOC = 544, complexity = 77
+- Part 1 answer = 1420
+- Part 2 answer = 1245
+- Time taken = 313ms
+- SCC: LOC = 544, complexity = 77
 
 Part 1 was fun. Part 2 told me about the copying of arrays and regrets on trying building immutable code.
 
 ## Day 9
-Part answer = 90433990
-Time taken = 7ms
-SCC: LOC = 581, complexity = 80
+- Part 1 answer = 90433990
+- Part 2 answer = 11691646
+- Time taken = 359ms
+- SCC: LOC = 598, complexity = 84

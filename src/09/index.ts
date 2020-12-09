@@ -12,7 +12,14 @@ function star1 (lines: string[]): string {
 }
 
 function star2 (lines: string[]): string {
-  return 'TODO';
+  const numbers = lines.map(line => parseInt(line, 10));
+  const errorValue = findErrorValue(numbers, 25);
+
+  const numberRange = findNumberRangeThatMatchSum(numbers, errorValue);
+  const minNumberFromRange = Math.min(...numberRange);
+  const maxNumberFromRange = Math.max(...numberRange);
+
+  return `${minNumberFromRange + maxNumberFromRange}`;
 }
 
 export function findErrorValue (numbers: number[], windowSize: number): number {
@@ -36,4 +43,18 @@ export function isValueSumOfAnyPair (testValue: number, numbers: number[]): bool
     });
   });
   return isSum;
+}
+
+function sum (numbers: number[]): number {
+  return numbers.reduce((acc, value) => acc + value);
+}
+
+export function findNumberRangeThatMatchSum (numbers: number[], targetSum: number): number[] {
+  for (let start = 0; start < numbers.length - 1; start++) {
+    for (let end = start + 1; end < numbers.length; end++) {
+      const range = numbers.slice(start, end + 1);
+      if (sum(range) === targetSum) return range;
+    }
+  }
+  throw new Error('findNumberRangeThatMatchSum() failed to find matching range');
 }
