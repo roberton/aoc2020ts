@@ -59,6 +59,7 @@ Would be good to have unit tests for the isPasswordValid() functions as well
 ## Day 3
 - Time taken about 14ms
 - Part 1 answer = 178
+- Part 2 answer = 3492520200
 - SCC: LOC = 167, complexity = 27
 
 ## Day 4

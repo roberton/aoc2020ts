@@ -1,4 +1,5 @@
 // import { Day } from '../DayInterface';
+import sumBooleanArray from '../lib/sumBooleanArray';
 
 export const Day3 = {
   id: '03',
@@ -21,20 +22,15 @@ function star2 (treeMap: string[]): string {
   return `${treeProduct}`;
 }
 
-export function isTreeAt (map: string[], x: number, y: number): boolean {
-  const mapWidth = map[0].length;
+export function isTreeAt (row: string, x: number): boolean {
+  const mapWidth = row.length;
   const xPosInMap = x % mapWidth;
-  return map[y][xPosInMap] === '#';
+  return row[xPosInMap] === '#';
 }
 
-export function countTrees (map: string[], slopeX: number, slopeY: number): number {
-  let x = 0;
-  let y = 0;
-  let treeCount = 0;
-  while ((y + slopeY) < map.length) {
-    x += slopeX;
-    y += slopeY;
-    if (isTreeAt(map, x, y)) treeCount++;
-  }
-  return treeCount;
+export function countTrees (treeMap: string[], slopeX: number, slopeY: number): number {
+  const trees = treeMap
+    .filter((_, rowIndex) => rowIndex % slopeY === 0)
+    .map((row, rowIndex) => isTreeAt(row, rowIndex * slopeX));
+  return sumBooleanArray(trees);
 }
