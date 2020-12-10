@@ -41,7 +41,6 @@ Scratch "to do" list (there are also TODO comments in the code, hopefully not ma
 - [ ] where a puzzle has types, move them to their own files
 - [ ] add help and finish usage information in this file
 - [ ] make library function for finding pair of numbers that match a target (see days 01 and 09)
-- [ ] reduce number of uses of 'let' (end of day 4 there are 10, day 6: 14)
 - [ ] use async file reading
 
 # Notes for each day
@@ -102,3 +101,10 @@ Part 1 was fun. Part 2 told me about the copying of arrays and regrets on trying
 - Part 2 answer = 11691646
 - Time taken = 359ms
 - SCC: LOC = 595, complexity = 83
+
+## Day 10
+- Part 1 answer = 2475
+- Part 2: crivens!
+
+SCC: LOC = 630, complexity = 85
+Number of lets: 13

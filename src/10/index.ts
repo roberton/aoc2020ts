@@ -22,17 +22,20 @@ export function findNumberOf1And3JoltDiffs (adaptors: number[]): number[] {
   return [numberOf1JoltDiffs, numberOf3JoltDiffs];
 }
 
-// I thought would be more to this :-)
+// I thought there would be more to this :-)
 function findAdaptorChain (adaptors: number[]): number[] {
   return adaptors.sort((a, b) => a - b);
 }
 
 function countDiffBySize (numbers: number[], diff: number): number {
-  let count = 0;
-  let previousValue = 0;
-  numbers.forEach(value => {
-    if (value - previousValue === diff) count++;
-    previousValue = value;
-  });
-  return count;
+  const result = numbers.reduce((state, value) => {
+    if (value - state.previousValue === diff) {
+      state.count++;
+    }
+    state.previousValue = value;
+    return state;
+  },
+  { count: 0, previousValue: 0 }
+  );
+  return result.count;
 }
