@@ -1,4 +1,5 @@
 import { findPairForSumValue } from '../lib/findPairForSumValue';
+import { sum } from '../lib/sum';
 
 export const Day9 = {
   id: '09',
@@ -34,10 +35,6 @@ export function findErrorValue (numbers: number[], windowSize: number): number {
     }
   }
   throw new Error('findErrorValue() failed to find an error value');
-}
-
-function sum (numbers: number[]): number {
-  return numbers.reduce((acc, value) => acc + value);
 }
 
 export function findNumberRangeThatMatchSum (numbers: number[], targetSum: number): number[] {

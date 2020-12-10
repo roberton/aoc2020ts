@@ -43,6 +43,7 @@ function convertAnswersToBitmap (answerLine: string): number {
   return answersBitmap;
 }
 
+// TODO forEach can be replaced with a reduce?
 export function convertGroupedAnswersToBinaryLine (answerGroup: string[]): number {
   let groupBinaryAnswers = 0b11111111111111111111111111; // set binary to be all true initially
   answerGroup.forEach(answerLine => {

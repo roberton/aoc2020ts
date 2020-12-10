@@ -1,3 +1,5 @@
+import { sum } from '../lib/sum';
+
 export const Day5 = {
   id: '05',
   star1,
@@ -32,9 +34,8 @@ export function calculateSeatId (seatString: string): number {
   return row * 8 + column;
 }
 
-function findMissingNumber (sortedNumbers: number[]): number {
-  for (let i = sortedNumbers[0]; i < sortedNumbers[sortedNumbers.length - 1]; i++) {
-    if (!sortedNumbers.includes(i)) return i;
-  }
-  return NaN;
+export function findMissingNumber (sortedNumbers: number[]): number {
+  const expectedSum = (sortedNumbers[0] + sortedNumbers[sortedNumbers.length - 1]) * (sortedNumbers.length + 1) / 2;
+  const actualSum = sum(sortedNumbers);
+  return expectedSum - actualSum;
 }
