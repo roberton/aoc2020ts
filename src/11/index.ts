@@ -7,6 +7,7 @@ export const Day11 = {
   star2
 };
 
+// TODO: pull out common code from star1 and star2
 export function star1 (lines: string[]): string {
   const waitingArea = buildWaitingArea(lines);
 
@@ -101,6 +102,8 @@ export function buildWaitingArea (seatLayout: string[]): WaitingArea {
   };
 }
 
+// TODO: could combine movePeople and movePeople2 and instead pass in functions
+// for if should fill a seat or empty a seat. Predicate functions?
 export function movePeople (waitingArea: WaitingArea): Location[][] {
   const location = waitingArea.locations;
   const newLocations = clonedeep(waitingArea.locations);

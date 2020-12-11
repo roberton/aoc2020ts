@@ -18,7 +18,7 @@ function star1 (lines: string[]): string {
 function star2 (lines: string[]): string {
   const groupedAnswers = groupLines(lines);
   const groupedBinaryAnswers = groupedAnswers.map(
-    groupedAnswer => convertGroupedAnswersToBinaryLine(groupedAnswer)
+    groupedAnswer => convertGroupedAnswersToBitmap(groupedAnswer)
   );
   const groupAnswerCounts = groupedBinaryAnswers.map(
     binaryAnswer => countOnesInBinaryNumber(binaryAnswer)
@@ -43,14 +43,13 @@ function convertAnswersToBitmap (answerLine: string): number {
   return answersBitmap;
 }
 
-// TODO forEach can be replaced with a reduce?
-export function convertGroupedAnswersToBinaryLine (answerGroup: string[]): number {
-  let groupBinaryAnswers = 0b11111111111111111111111111; // set binary to be all true initially
-  answerGroup.forEach(answerLine => {
-    const answerBinary = convertAnswersToBitmap(answerLine);
-    groupBinaryAnswers = groupBinaryAnswers & answerBinary;
-  });
-  return groupBinaryAnswers;
+export function convertGroupedAnswersToBitmap (answerGroup: string[]): number {
+  return answerGroup
+    .reduce((bitmapResult, answerLine) => {
+      return bitmapResult & convertAnswersToBitmap(answerLine);
+    },
+    0b11111111111111111111111111
+    );
 }
 
 function countOnesInBinaryNumber (binaryNumber: number): number {
