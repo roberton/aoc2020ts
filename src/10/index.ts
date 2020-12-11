@@ -12,7 +12,13 @@ function star1 (lines: string[]): string {
 }
 
 function star2 (lines: string[]): string {
-  return 'TODO';
+  const adaptors = lines.map(line => parseInt(line, 10));
+  const segments = segmentAdaptors(adaptors);
+  const segmentVariationsCounts = segments.map(segment => calcSegmentVariations(segment));
+  console.log(segmentVariationsCounts);
+
+  const totalVariationCount = segmentVariationsCounts.reduce((acc, count) => acc * count);
+  return `${totalVariationCount}`;
 }
 
 export function findNumberOf1And3JoltDiffs (adaptors: number[]): number[] {
@@ -38,4 +44,30 @@ function countDiffBySize (numbers: number[], diff: number): number {
   { count: 0, previousValue: 0 }
   );
   return result.count;
+}
+
+export function segmentAdaptors (adaptors: number[]): any[] {
+  adaptors.sort((a, b) => a - b);
+
+  let previousValue = 0;
+  let curSegment: number[] = [];
+  const segmentList: any[] = [];
+  adaptors.forEach(value => {
+    if (value - previousValue < 3) {
+      curSegment.push(value);
+    } else {
+      segmentList.push(curSegment);
+      curSegment = [value];
+    }
+    previousValue = value;
+  });
+  segmentList.push(curSegment);
+
+  console.log(JSON.stringify(segmentList));
+  return segmentList;
+}
+
+export function calcSegmentVariations (segment: number[]): number {
+  
+  return 3;
 }
