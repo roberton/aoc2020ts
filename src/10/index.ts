@@ -15,7 +15,7 @@ function star2 (lines: string[]): string {
   const adaptors = lines.map(line => parseInt(line, 10));
   const segments = segmentAdaptors(adaptors);
   const segmentVariationsCounts = segments.map(segment => calcSegmentVariations(segment));
-  console.log(segmentVariationsCounts);
+  // console.log(segmentVariationsCounts);
 
   const totalVariationCount = segmentVariationsCounts.reduce((acc, count) => acc * count);
   return `${totalVariationCount}`;
@@ -63,7 +63,7 @@ export function segmentAdaptors (adaptors: number[]): any[] {
   });
   segmentList.push(curSegment);
 
-  console.log(JSON.stringify(segmentList));
+  // console.log(JSON.stringify(segmentList));
   return segmentList;
 }
 
