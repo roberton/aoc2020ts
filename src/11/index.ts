@@ -11,9 +11,7 @@ export function star1 (lines: string[]): string {
 
   let settled = false;
   let numberOfOccupiedSeats = 0;
-  let iterations = 0;
   while (!settled) {
-    iterations++;
     waitingArea.locations = movePeople(waitingArea);
     const newCount = countOccupiedSeats(waitingArea);
     if (newCount === numberOfOccupiedSeats) {
@@ -27,7 +25,23 @@ export function star1 (lines: string[]): string {
 }
 
 export function star2 (lines: string[]): string {
-  return 'TODO';
+  const waitingArea = buildWaitingArea(lines);
+
+  let settled = false;
+  let numberOfOccupiedSeats = 0;
+  let iterations = 0;
+  while (!settled) {
+    iterations++;
+    waitingArea.locations = movePeople2(waitingArea);
+    const newCount = countOccupiedSeats(waitingArea);
+    if (newCount === numberOfOccupiedSeats) {
+      settled = true;
+    } else {
+      numberOfOccupiedSeats = newCount;
+    }
+  }
+
+  return `${numberOfOccupiedSeats}`;
 }
 
 /*
@@ -95,6 +109,23 @@ export function movePeople (waitingArea: WaitingArea): Location[][] {
   return newLocations;
 }
 
+export function movePeople2 (waitingArea: WaitingArea): Location[][] {
+  const location = waitingArea.locations;
+  const newLocations = clonedeep(waitingArea.locations);
+
+  waitingArea.seatList.forEach(seat => {
+    const numberOfOccupiedSeats = countLOSOccupiedSeats(seat.x, seat.y, waitingArea.locations);
+    if (!isSeatOccupied(seat.x, seat.y, location) && numberOfOccupiedSeats === 0) {
+      // fill seat
+      setSeatOccupied(seat.x, seat.y, newLocations, true);
+    } else if (isSeatOccupied(seat.x, seat.y, location) && numberOfOccupiedSeats >= 5) {
+      // empty seat
+      setSeatOccupied(seat.x, seat.y, newLocations, false);
+    }
+  });
+  return newLocations;
+}
+
 function countAdjacentOccupiedSeats (x: number, y: number, locations: Location[][]): number {
   let count = 0;
   if (isSeatOccupied(x - 1, y - 1, locations)) count++;
@@ -111,6 +142,46 @@ function countAdjacentOccupiedSeats (x: number, y: number, locations: Location[]
   return count;
 }
 
+function countLOSOccupiedSeats (x: number, y: number, locations: Location[][]): number {
+  let count = 0;
+  if (isLosSeatOccupied(x, y, -1, -1, locations)) count++;
+  if (isLosSeatOccupied(x, y, +0, -1, locations)) count++;
+  if (isLosSeatOccupied(x, y, +1, -1, locations)) count++;
+
+  if (isLosSeatOccupied(x, y, -1, 0, locations)) count++;
+  if (isLosSeatOccupied(x, y, +1, 0, locations)) count++;
+
+  if (isLosSeatOccupied(x, y, -1, +1, locations)) count++;
+  if (isLosSeatOccupied(x, y, +0, +1, locations)) count++;
+  if (isLosSeatOccupied(x, y, +1, +1, locations)) count++;
+
+  return count;
+}
+
+function isLosSeatOccupied (x: number, y: number, dx: number, dy: number, locations: Location[][]): boolean {
+  type Status = 'unknown' | 'occupied' | 'empty';
+  let state: Status = 'unknown';
+
+  while (state === 'unknown') {
+    x += dx;
+    y += dy;
+    // return false for out of bounds locations
+    if (x < 0 || x >= locations[0].length) {
+      state = 'empty';
+    } else if (y < 0 || y >= locations.length) {
+      state = 'empty';
+    } else if (locations[y][x] === 'occupied') {
+      state = 'occupied';
+    } else if (locations[y][x] === 'empty') {
+      state = 'empty';
+    }
+  }
+  if (state === 'occupied') return true;
+  if (state === 'empty') return false;
+
+  throw new Error('isLosSeatOccupied() still unknown');
+}
+
 function isSeatOccupied (x: number, y: number, locations: Location[][]): boolean {
   // return false for out of bounds locations
   if (x < 0 || x >= locations[0].length) return false;
@@ -118,7 +189,6 @@ function isSeatOccupied (x: number, y: number, locations: Location[][]): boolean
 
   if (locations[y][x] === 'occupied') return true;
   if (locations[y][x] === 'empty') return false;
-  // throw new Error(`isSeatOccupied called on floor location (${x}, ${y})`);
   return false;
 }
 

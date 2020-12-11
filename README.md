@@ -112,7 +112,9 @@ Number of lets: 13
 
 ## Day 11
 - Part 1 answer = 2368
-- Part 2 ?
+- Part 2 answer = 2124
+- Time taken = 341ms
+- SCC: LOC = 812, complexity = 161 (doubled!)
+- Number lets: 17
 
-SCC: LOC = 755, complexity = 124 (!)
-Number lets: 17
+Took a while but I've done GoL many times so knew it was just a question of cranking out the code...

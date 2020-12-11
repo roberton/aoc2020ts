@@ -1,4 +1,4 @@
-import { buildWaitingArea, movePeople, countOccupiedSeats } from '../src/11';
+import { buildWaitingArea, movePeople, movePeople2, countOccupiedSeats } from '../src/11';
 
 const testData = [
   'L.LL.LL.LL',
@@ -61,5 +61,37 @@ describe('movePeople', () => {
     waitingArea.locations = movePeople(waitingArea);
 
     expect(countOccupiedSeats(waitingArea)).toBe(37);
+  });
+});
+
+describe('movePeople2', () => {
+  it('will fill every seat after one round for test data', () => {
+    const waitingArea = buildWaitingArea(testData);
+    waitingArea.locations = movePeople(waitingArea);
+
+    waitingArea.seatList.forEach(seat => {
+      expect(waitingArea.locations[seat.y][seat.x]).toBe('occupied');
+    });
+    expect(countOccupiedSeats(waitingArea)).toBe(71);
+  });
+
+  it('will show 7 occupied seats after 2 rounds for test data', () => {
+    const waitingArea = buildWaitingArea(testData);
+    waitingArea.locations = movePeople2(waitingArea);
+    waitingArea.locations = movePeople2(waitingArea);
+
+    expect(countOccupiedSeats(waitingArea)).toBe(7);
+  });
+
+  it('will show 26 occupied seats after 6 rounds for test data', () => {
+    const waitingArea = buildWaitingArea(testData);
+    waitingArea.locations = movePeople2(waitingArea);
+    waitingArea.locations = movePeople2(waitingArea);
+    waitingArea.locations = movePeople2(waitingArea);
+    waitingArea.locations = movePeople2(waitingArea);
+    waitingArea.locations = movePeople2(waitingArea);
+    waitingArea.locations = movePeople2(waitingArea);
+
+    expect(countOccupiedSeats(waitingArea)).toBe(26);
   });
 });
