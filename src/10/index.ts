@@ -68,6 +68,5 @@ export function segmentAdaptors (adaptors: number[]): any[] {
 }
 
 export function calcSegmentVariations (segment: number[]): number {
-  
   return 3;
 }

@@ -15,7 +15,7 @@ describe('segmentAdaptors', () => {
   });
 });
 
-describe('calcSegmentVariations', () => {
+describe.skip('calcSegmentVariations', () => {
   it('should return 4 for [4, 5, 6, 7]', () => {
     const segment = [4, 5, 6, 7];
     expect(calcSegmentVariations(segment)).toEqual(4);

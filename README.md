@@ -109,3 +109,10 @@ Part 1 was fun. Part 2 told me about the copying of arrays and regrets on trying
 
 SCC: LOC = 630, complexity = 85
 Number of lets: 13
+
+## Day 11
+- Part 1 answer = 2368
+- Part 2 ?
+
+SCC: LOC = 755, complexity = 124 (!)
+Number lets: 17
