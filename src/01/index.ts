@@ -6,7 +6,6 @@ export const Day1 = {
   star2
 };
 
-// TODO: can this be rewritten to use Array.some()?
 export function star1 (lines: string[]): string {
   const expenseEntries = parseFile(lines);
 

@@ -24,6 +24,7 @@ export function star2 (lines: string[]): string {
     accumulator: 0
   };
 
+  // TODO: can this be done as a map, returning [exitStatus, acc] for each version?
   let accResult = 0;
 
   program.instructions.forEach((instruction, index) => {
@@ -68,7 +69,7 @@ export function parseInstruction (line: string): Instruction {
 
 function runProgramUntilCompletion (program: Program): [ExitStatus, number] {
   let p = program;
-  const counterHistory = new Map();
+  const counterHistory = new Map(); // TODO: should be Set
 
   while (p.counter < p.instructions.length) {
     counterHistory.set(p.counter, true);
