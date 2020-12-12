@@ -13,11 +13,12 @@ import { Day8 } from './08';
 import { Day9 } from './09';
 import { Day10 } from './10';
 import { Day11 } from './11';
+import { Day12 } from './12';
 import { loadFile } from './lib/loadFile';
 
-const days = [Day1, Day2, Day3, Day4, Day5, Day6, Day7, Day8, Day9, Day10, Day11];
+const days = [Day1, Day2, Day3, Day4, Day5, Day6, Day7, Day8, Day9, Day10, Day11, Day12];
 
-program.version('0.11.0')
+program.version('0.12.0')
   .option('-d  --day <dayId>', 'ID of the day for which to calculate the puzzle')
   .option('-t --time', 'display timing information')
   .parse(process.argv);
