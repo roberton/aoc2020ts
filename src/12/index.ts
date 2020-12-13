@@ -13,7 +13,11 @@ export function star1 (lines: string[]): string {
 }
 
 export function star2 (lines: string[]): string {
-  return 'TODO';
+  const instructions = parseInstructions(lines);
+  const shipPosition = followWaypointInstructions(instructions);
+  const distance = calcManhattanDistance(shipPosition);
+
+  return `${distance}`;
 }
 
 type Action = 'N' | 'S' | 'E' | 'W' | 'L' | 'R' | 'F';
@@ -25,6 +29,11 @@ export interface Instruction {
 
 interface Position {
   course: number
+  x: number
+  y: number
+}
+
+interface Waypoint {
   x: number
   y: number
 }
@@ -45,6 +54,7 @@ function parseInstructionLine (instructionLine: string): Instruction {
 // TODO: reduce duplication between compass directions and F
 export function followInstructions (instructions: Instruction[]): Position {
   const shipsPosition = { course: 0, x: 0, y: 0 };
+
   instructions.forEach(instruction => {
     switch (instruction.action) {
       case 'N':
@@ -79,6 +89,59 @@ export function followInstructions (instructions: Instruction[]): Position {
   return shipsPosition;
 }
 
+export function followWaypointInstructions (instructions: Instruction[]): Position {
+  const shipsPosition = { course: 0, x: 0, y: 0 };
+  let waypoint = { x: 10, y: 1 };
+
+  instructions.forEach(instruction => {
+    switch (instruction.action) {
+      case 'N':
+        waypoint.y += instruction.value;
+        break;
+      case 'S':
+        waypoint.y -= instruction.value;
+        break;
+      case 'E':
+        waypoint.x += instruction.value;
+        break;
+      case 'W':
+        waypoint.x -= instruction.value;
+        break;
+      case 'R':
+        waypoint = rotateWaypoint(waypoint, instruction.value);
+        break;
+      case 'L':
+        waypoint = rotateWaypoint(waypoint, -instruction.value);
+        break;
+      case 'F':
+        shipsPosition.x += waypoint.x * instruction.value;
+        shipsPosition.y += waypoint.y * instruction.value;
+        break;
+    }
+  });
+  return shipsPosition;
+}
+
 function calcManhattanDistance (position: Position): number {
   return Math.abs(position.x) + Math.abs(position.y);
+}
+
+export function rotateWaypoint (waypoint: Waypoint, angle: number): Waypoint {
+  const normAngle = angle < 0 ? angle + 360 : angle;
+  let newWaypoint = waypoint;
+  switch (normAngle) {
+    case 90:
+      newWaypoint = { x: waypoint.y, y: -waypoint.x };
+      break;
+    case 180:
+      newWaypoint = { x: -waypoint.x, y: -waypoint.y };
+      break;
+    case 270:
+      newWaypoint = { x: -waypoint.y, y: waypoint.x };
+      break;
+    default: {
+      throw new Error(`rotateWaypoint(${angle}) - unexpected angle`);
+    }
+  }
+  return newWaypoint;
 }

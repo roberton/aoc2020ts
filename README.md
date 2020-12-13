@@ -122,7 +122,11 @@ Took a while but I've done GoL many times so knew it was just a question of cran
 
 ## Day 12
 - Part 1 answer = 2057
-- Part 2 ?
-- SCC: LOC 871, complexity = 150
+- Part 2 answer = 71504
+- SCC: LOC 968, complexity = 167 (after 13/part 1)
 - Number of lets: 15
-- 
+
+## Day 13
+- Part 1 answer = 3789
+- Part 2 ?
+- SCC: LOC 911, complexity = 153
