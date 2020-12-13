@@ -16,7 +16,6 @@ export function star2 (lines: string[]): string {
   return 'TODO';
 }
 
-// type Action = 'North' | 'South' | 'East' | 'West' | 'Left' | 'Right' | 'Forward'
 type Action = 'N' | 'S' | 'E' | 'W' | 'L' | 'R' | 'F';
 
 export interface Instruction {
@@ -43,6 +42,7 @@ function parseInstructionLine (instructionLine: string): Instruction {
   };
 }
 
+// TODO: reduce duplication between compass directions and F
 export function followInstructions (instructions: Instruction[]): Position {
   const shipsPosition = { course: 0, x: 0, y: 0 };
   instructions.forEach(instruction => {
@@ -80,6 +80,5 @@ export function followInstructions (instructions: Instruction[]): Position {
 }
 
 function calcManhattanDistance (position: Position): number {
-  console.log(JSON.stringify(position));
   return Math.abs(position.x) + Math.abs(position.y);
 }
