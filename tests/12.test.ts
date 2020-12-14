@@ -1,4 +1,4 @@
-import { followInstructions, followWaypointInstructions, rotateWaypoint, Instruction } from '../src/12';
+import { followShipInstructions, followWaypointInstructions, rotateWaypoint, Instruction } from '../src/12';
 
 const testData: Instruction[] = [
   { action: 'F', value: 10 },
@@ -10,7 +10,7 @@ const testData: Instruction[] = [
 
 describe('followInstructions', () => {
   it('should return a position of (17, 8) for test data', () => {
-    expect(followInstructions(testData)).toEqual({ x: 17, y: -8, course: 90 });
+    expect(followShipInstructions(testData)).toEqual({ x: 17, y: -8, course: 90 });
   });
 });
 

@@ -6,7 +6,7 @@ export const Day12 = {
 
 export function star1 (lines: string[]): string {
   const instructions = parseInstructions(lines);
-  const shipPosition = followInstructions(instructions);
+  const shipPosition = followShipInstructions(instructions);
   const distance = calcManhattanDistance(shipPosition);
 
   return `${distance}`;
@@ -52,7 +52,8 @@ function parseInstructionLine (instructionLine: string): Instruction {
 }
 
 // TODO: reduce duplication between compass directions and F
-export function followInstructions (instructions: Instruction[]): Position {
+// or simplify some other way anyway.
+export function followShipInstructions (instructions: Instruction[]): Position {
   const shipsPosition = { course: 0, x: 0, y: 0 };
 
   instructions.forEach(instruction => {
@@ -74,7 +75,7 @@ export function followInstructions (instructions: Instruction[]): Position {
         break;
       case 'L':
         shipsPosition.course -= instruction.value;
-        shipsPosition.course = (shipsPosition.course < 0) ? shipsPosition.course + 360 : shipsPosition.course;
+        shipsPosition.course = (shipsPosition.course + 360) % 360;
         break;
       case 'F':
         switch (shipsPosition.course) {
@@ -126,22 +127,19 @@ function calcManhattanDistance (position: Position): number {
   return Math.abs(position.x) + Math.abs(position.y);
 }
 
+// TODO: there's a way to do this a matrix...
 export function rotateWaypoint (waypoint: Waypoint, angle: number): Waypoint {
-  const normAngle = angle < 0 ? angle + 360 : angle;
-  let newWaypoint = waypoint;
+  const normAngle = (angle + 360) % 360;
+
   switch (normAngle) {
     case 90:
-      newWaypoint = { x: waypoint.y, y: -waypoint.x };
-      break;
+      return { x: waypoint.y, y: -waypoint.x };
     case 180:
-      newWaypoint = { x: -waypoint.x, y: -waypoint.y };
-      break;
+      return { x: -waypoint.x, y: -waypoint.y };
     case 270:
-      newWaypoint = { x: -waypoint.y, y: waypoint.x };
-      break;
+      return { x: -waypoint.y, y: waypoint.x };
     default: {
       throw new Error(`rotateWaypoint(${angle}) - unexpected angle`);
     }
   }
-  return newWaypoint;
 }
