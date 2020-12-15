@@ -129,4 +129,10 @@ Took a while but I've done GoL many times so knew it was just a question of cran
 ## Day 13
 - Part 1 answer = 3789
 - Part 2 ?
-- SCC: LOC 911, complexity = 153
+- SCC: LOC = 911, complexity = 153
+
+## Day 14
+- Part 1 answer = 13727901897109
+- Part 2 ?
+- SCC: LOC = 1034, complexity = 178
+- Number of lets: 16

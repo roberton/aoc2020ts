@@ -1,6 +1,6 @@
 {
   "name": "aoc2020ts",
-  "version": "0.11.0",
+  "version": "0.14.1",
   "private": true,
   "description": "",
   "homepage": "https://github.com/roberton/aoc2020ts",
@@ -17,7 +17,7 @@
     "latest": "npm run build && aoc -d latest",
     "lint": "eslint .",
     "start": "node dist/index.js",
-    "prelint": "eslint .",
+    "pretest": "eslint .",
     "test": "jest ./tests --passWithNoTests"
   },
   "dependencies": {
