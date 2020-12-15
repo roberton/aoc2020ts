@@ -1,4 +1,3 @@
-// import { Day } from '../DayInterface';
 import sumBooleanArray from '../lib/sumBooleanArray';
 import groupLines from '../lib/groupLines';
 

@@ -1,4 +1,4 @@
-import { buildRuleFromRuleText, canContain, Bag, Rule, countBagsNeeded } from '../src/07';
+import { buildRuleFromRuleText, canContain, Bag, Rule, countBagsNeeded } from '../src/day/07';
 
 const ruleTexts1 = [
   'light red bags contain 1 bright white bag, 2 muted yellow bags.',

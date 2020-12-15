@@ -1,4 +1,4 @@
-import { parseInstruction, Instruction, star2 } from '../src/08';
+import { parseInstruction, Instruction, star2 } from '../src/day/08';
 
 describe('parseInstructions', () => {
   it('should parse "nop +0" corectly', () => {

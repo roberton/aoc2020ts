@@ -1,4 +1,4 @@
-import { findErrorValue, findNumberRangeThatMatchSum } from '../src/09';
+import { findErrorValue, findNumberRangeThatMatchSum } from '../src/day/09';
 
 describe('findErrorValue', () => {
   it('should return 127 for example data', () => {

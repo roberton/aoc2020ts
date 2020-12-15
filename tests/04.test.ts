@@ -1,7 +1,7 @@
 import {
   isValidPassport, isValidPassport2,
   isValidByr, isValidHgt, isValidHcl, isValidEcl, isValidPid
-} from '../src/04';
+} from '../src/day/04';
 
 const testInput = [
   'ecl:gry pid:860033327 eyr:2020 hcl:#fffffd',

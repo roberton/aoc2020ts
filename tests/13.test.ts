@@ -1,4 +1,4 @@
-import { parseBusIds, calcBusWaits } from '../src/13';
+import { parseBusIds, calcBusWaits } from '../src/day/13';
 
 describe('parseBusIds', () => {
   it('should return 7, 13, 59, 31, 19 for test data', () => {

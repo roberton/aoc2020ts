@@ -1,4 +1,4 @@
-import { buildWaitingArea, movePeople, movePeople2, countOccupiedSeats } from '../src/11';
+import { buildWaitingArea, movePeople, movePeople2, countOccupiedSeats } from '../src/day/11';
 
 const testData = [
   'L.LL.LL.LL',

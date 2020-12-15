@@ -1,4 +1,4 @@
-import { calculateSeatId, findMissingNumber } from '../src/05';
+import { calculateSeatId, findMissingNumber } from '../src/day/05';
 
 describe('calculateSeatId', () => {
   it('should return 357 for FBFBBFFRLR', () => {

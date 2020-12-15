@@ -1,4 +1,4 @@
-import { followShipInstructions, followWaypointInstructions, rotateWaypoint, Instruction } from '../src/12';
+import { followShipInstructions, followWaypointInstructions, rotateWaypoint, Instruction } from '../src/day/12';
 
 const testData: Instruction[] = [
   { action: 'F', value: 10 },

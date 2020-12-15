@@ -1,4 +1,4 @@
-import { findNumberOf1And3JoltDiffs, segmentAdaptors, calcSegmentVariations } from '../src/10';
+import { findNumberOf1And3JoltDiffs, segmentAdaptors, calcSegmentVariations } from '../src/day/10';
 
 describe('findNumberOf1And3JoltDiffs', () => {
   it('should return 7 and 5 for first data', () => {

@@ -1,4 +1,4 @@
-import { isTreeAt, countTrees } from '../src/03';
+import { isTreeAt, countTrees } from '../src/day/03';
 
 const testMap = [
   '..##.......',

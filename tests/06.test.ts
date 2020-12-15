@@ -1,4 +1,4 @@
-import { countAnswers, convertGroupedAnswersToBitmap } from '../src/06';
+import { countAnswers, convertGroupedAnswersToBitmap } from '../src/day/06';
 
 // TODO! move this to a separate test
 import groupLines from '../src/lib/groupLines';

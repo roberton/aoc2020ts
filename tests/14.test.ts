@@ -1,4 +1,4 @@
-import { parseInstructionString, Instruction, sumMemoryLocations, calcWriteValue, runProgram } from '../src/14';
+import { parseInstructionString, Instruction, sumMemoryLocations, calcWriteValue, runProgram } from '../src/day/14';
 
 describe('parseInstructionString', () => {
   it('should parse a mask instruction', () => {

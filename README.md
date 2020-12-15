@@ -136,3 +136,6 @@ Took a while but I've done GoL many times so knew it was just a question of cran
 - Part 2 ?
 - SCC: LOC = 1034, complexity = 178
 - Number of lets: 16
+
+## Day 15
+- Part 1 answer = ?

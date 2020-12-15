@@ -2,20 +2,11 @@
 import { program } from 'commander';
 
 import { Day, StarFunc } from './DayInterface';
-import { Day1 } from './01';
-import { Day2 } from './02';
-import { Day3 } from './03';
-import { Day4 } from './04';
-import { Day5 } from './05';
-import { Day6 } from './06';
-import { Day7 } from './07';
-import { Day8 } from './08';
-import { Day9 } from './09';
-import { Day10 } from './10';
-import { Day11 } from './11';
-import { Day12 } from './12';
-import { Day13 } from './13';
-import { Day14 } from './14';
+import {
+  Day1, Day2, Day3, Day4, Day5, Day6, Day7, Day8, Day9, Day10,
+  Day11, Day12, Day13, Day14
+} from './day';
+
 import { loadFile } from './lib/loadFile';
 
 const days = [
