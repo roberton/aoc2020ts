@@ -14,7 +14,7 @@ const days = [
   Day11, Day12, Day13, Day14, Day15
 ];
 
-program.version('0.15.0')
+program.version('0.15')
   .option('-d  --day <dayId>', 'ID of the day for which to calculate the puzzle')
   .option('-t --time', 'display timing information')
   .parse(process.argv);

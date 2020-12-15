@@ -138,4 +138,13 @@ Took a while but I've done GoL many times so knew it was just a question of cran
 - Number of lets: 16
 
 ## Day 15
-- Part 1 answer = ?
+- Part 1 answer = 517
+
+
+Performance is critical for part 2, unless there's some amazing algorithmic change.
+Let's measure performance of first 10,000, see if that's good enough if it could be maintained.
+
+10,000: 112ms. If maintained, 30m would be 3000 x 0.1s = 300s. Fine!
+
+Rebuilt version using Map:
+10,000: 3ms. Yes!
