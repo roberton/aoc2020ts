@@ -1,4 +1,5 @@
 import { sum } from '../lib/sum';
+import groupLines from '../lib/groupLines';
 
 export const Day16 = {
   id: '16',
@@ -10,14 +11,9 @@ function star1 (lines: string[]): string {
   const [ruleLines, ticketLines, nearbyTicketLines] = parseSections(lines);
   const ranges = parseRangesFromRulesSection(ruleLines);
   const nearbyTickets = parseNearbyTickets(nearbyTicketLines);
+  const invalidFields = findInvalidFields(nearbyTickets, ranges);
 
-  const invalidTickets = nearbyTickets
-    .filter(ticket => !isTicketValid(ticket, ranges));
-
-  console.log(nearbyTickets);
-  console.log(invalidTickets);
-  const errorRate = sum(invalidTickets);
-
+  const errorRate = sum(invalidFields);
   return `${errorRate}`;
 }
 
@@ -26,26 +22,19 @@ function star2 (lines: string[]): string {
 }
 
 interface Range {
-  start: number
-  end: number
+  min: number
+  max: number
 }
 
-// TODO: can use groupLines()?
-function parseSections (lines: string[]): string[][] {
-  const initialRanges: number[] = [];
-  const rangeBreakIndexes: number[] = lines
-    .reduce((acc, line, index) => {
-      if (line.length === 0) {
-        acc.push(index);
-      }
-      return acc;
-    },
-    initialRanges
-    );
+interface Ticket {
+  fields: number[]
+}
 
-  const ruleLines = lines.slice(0, rangeBreakIndexes[0]);
-  const yourTicketLines = lines.slice(rangeBreakIndexes[0] + 1, rangeBreakIndexes[1]);
-  const nearbyTicketLines = lines.slice(rangeBreakIndexes[1] + 2);
+function parseSections (lines: string[]): string[][] {
+  const groups = groupLines(lines);
+  const ruleLines = groups[0];
+  const yourTicketLines = groups[1].slice(1); // first line is a header so skip it
+  const nearbyTicketLines = groups[2].slice(1); // first line is a header so skip it
 
   return [ruleLines, yourTicketLines, nearbyTicketLines];
 }
@@ -64,17 +53,28 @@ function parseRuleString (ruleString: string): Range[] {
     .map(rangeString => {
       const [startString, endString] = rangeString.split('-');
       return {
-        start: parseInt(startString, 10),
-        end: parseInt(endString, 10)
+        min: parseInt(startString, 10),
+        max: parseInt(endString, 10)
       };
     });
 }
 
-export function parseNearbyTickets (nearbyTicketLines: string[]): number[] {
-  return nearbyTicketLines.join(',').split(',')
-    .map(ticketString => parseInt(ticketString, 10));
+export function parseNearbyTickets (nearbyTicketLines: string[]): Ticket[] {
+  return nearbyTicketLines
+    .map(ticketLine => {
+      return {
+        fields: ticketLine.split(',').map(valueString => parseInt(valueString, 10))
+      };
+    });
 }
 
-function isTicketValid (ticket: number, ranges: Range[]): boolean {
-  return ranges.some(range => (ticket >= range.start) && (ticket <= range.end));
+function findInvalidFields (tickets: Ticket[], ranges: Range[]): number[] {
+  return tickets
+    .map(ticket => ticket.fields)
+    .flat()
+    .filter(field => !isFieldValid(field, ranges));
+}
+
+function isFieldValid (field: number, ranges: Range[]): boolean {
+  return ranges.some(range => (field >= range.min) && (field <= range.max));
 }
