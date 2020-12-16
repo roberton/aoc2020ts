@@ -13,3 +13,4 @@ export { Day12 } from './12';
 export { Day13 } from './13';
 export { Day14 } from './14';
 export { Day15 } from './15';
+export { Day16 } from './16';

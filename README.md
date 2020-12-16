@@ -150,3 +150,9 @@ Originally used an array. Performance for first 10,000 entries:
 
 Rebuilt version using Map:
 10,000: 3ms. Yes!
+
+## Day 16
+- Part 1 answer = 27898
+- Part 2 answer = ?
+- SCC: LOC = 1162, complexity = 187
+- Number of lets: 16
