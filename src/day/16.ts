@@ -9,16 +9,30 @@ export const Day16 = {
 
 function star1 (lines: string[]): string {
   const [ruleLines, ticketLines, nearbyTicketLines] = parseSections(lines);
-  const ranges = parseRangesFromRulesSection(ruleLines);
+  const rules = parseRulesFromRulesSection(ruleLines);
   const nearbyTickets = parseNearbyTickets(nearbyTicketLines);
-  const invalidFields = findInvalidFields(nearbyTickets, ranges);
+  const invalidFields = findInvalidFields(nearbyTickets, rules);
 
   const errorRate = sum(invalidFields);
   return `${errorRate}`;
 }
 
 function star2 (lines: string[]): string {
+  // const [ruleLines, ticketLines, nearbyTicketLines] = parseSections(lines);
+  // const rules = parseRulesFromRulesSection(ruleLines);
+  // const nearbyTickets = parseNearbyTickets(nearbyTicketLines);
+  // const validTickets = findValidTickets(nearbyTickets, rules);
+
+  // console.log(`Number of valid tickets = ${validTickets.length} (of ${nearbyTickets.length})`);
+
+  // const fieldMappings = findFieldMappings(nearbyTickets, ranges);
+
   return 'TODO';
+}
+
+interface Rule {
+  description: string
+  ranges: Range[]
 }
 
 interface Range {
@@ -39,24 +53,28 @@ function parseSections (lines: string[]): string[][] {
   return [ruleLines, yourTicketLines, nearbyTicketLines];
 }
 
-export function parseRangesFromRulesSection (rules: string[]): Range[] {
+export function parseRulesFromRulesSection (rules: string[]): Rule[] {
   return rules
-    .map(ruleString => parseRuleString(ruleString))
-    .flat();
+    .map(ruleString => parseRuleString(ruleString));
 }
 
-function parseRuleString (ruleString: string): Range[] {
-  const [_, rangeString] = ruleString.split(': ');
-  const ranges = rangeString.split(' or ');
+function parseRuleString (ruleString: string): Rule {
+  const [description, rangeString] = ruleString.split(': ');
+  const subRangeStrings = rangeString.split(' or ');
 
-  return ranges
-    .map(rangeString => {
-      const [startString, endString] = rangeString.split('-');
+  const ranges = subRangeStrings
+    .map(subRangeString => {
+      const [startString, endString] = subRangeString.split('-');
       return {
         min: parseInt(startString, 10),
         max: parseInt(endString, 10)
       };
     });
+
+  return {
+    description,
+    ranges
+  };
 }
 
 export function parseNearbyTickets (nearbyTicketLines: string[]): Ticket[] {
@@ -68,13 +86,37 @@ export function parseNearbyTickets (nearbyTicketLines: string[]): Ticket[] {
     });
 }
 
-function findInvalidFields (tickets: Ticket[], ranges: Range[]): number[] {
+function findInvalidFields (tickets: Ticket[], rules: Rule[]): number[] {
   return tickets
     .map(ticket => ticket.fields)
     .flat()
-    .filter(field => !isFieldValid(field, ranges));
+    .filter(field => !isFieldValid(field, rules));
 }
 
-function isFieldValid (field: number, ranges: Range[]): boolean {
-  return ranges.some(range => (field >= range.min) && (field <= range.max));
+function isFieldValid (field: number, rules: Rule[]): boolean {
+  return rules
+    .some(rule => ((field >= rule.ranges[0].min) && (field <= rule.ranges[0].max)) ||
+    ((field >= rule.ranges[1].min) && (field <= rule.ranges[1].max)));
 }
+
+function findValidTickets (tickets: Ticket[], rules: Rule[]): Ticket[] {
+  return tickets.filter(ticket => isTicketValid(ticket, rules));
+}
+
+function isTicketValid (ticket: Ticket, rules: Rule[]): boolean {
+  return ticket.fields.every(field => isFieldValid(field, rules));
+}
+
+// export function findFieldMappings (tickets: Ticket[], ranges: Range[]) {
+//   // create list of lists: for each field, all ranges
+//   const validMappings = tickets[0].fields.map(_ => ranges);
+
+//   tickets.forEach(ticket => {
+//     validMappings.forEach((mapping, fieldIndex) => {
+//       const ticketFieldValue = ticket.fields[fieldIndex];
+//       if (!isFieldValid(ticketFieldValue, mapping)) {
+//         validMappings[fieldIndex].splice(fieldIndex, 1);
+//       }
+//     });
+//   });
+// }

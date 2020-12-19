@@ -39,10 +39,10 @@ Scratch "to do" list (there are also TODO comments in the code, hopefully not ma
 - [x] implement command line runner, perhaps using Commander
 - [x] look at TODO in day 04 (mapping fields to functions)
 - [x] make library function for finding pair of numbers that match a target (see days 01 and 09)
-- [ ] re-organise code to directly under source, and data files in a new folder
+- [x] re-organise code to directly under source, and data files in a new folder
 - [ ] where a puzzle has types, move them to their own files
 - [ ] add help and finish usage information in this file
-- [ ] use async file reading
+- [ ] create regression tests that check each star function returns correct puzzle answer
 
 # Notes for each day
 ## Day 1
