@@ -159,3 +159,13 @@ Rebuilt version using Map:
 
 Didn't enjoy part 2 of this! Lots of rewriting of part 1, plus several days elapsed
 in between which didn't help. And several times there was one more thing to do... :-(
+
+## Day 17: Conway's Cubes
+Skipping for now
+
+## Day 18: Operation Order
+- Part 1 answer = 69490582260
+- Part 2 answer = ?
+- SCC: LOC = 1297, complexity = 205
+- Number of lets: 18
+- 

@@ -4,17 +4,17 @@ import { program } from 'commander';
 import { Day, StarFunc } from './DayInterface';
 import {
   Day1, Day2, Day3, Day4, Day5, Day6, Day7, Day8, Day9, Day10,
-  Day11, Day12, Day13, Day14, Day15, Day16
+  Day11, Day12, Day13, Day14, Day15, Day16, Day18
 } from './day';
 
 import { loadFile } from './lib/loadFile';
 
 const days = [
   Day1, Day2, Day3, Day4, Day5, Day6, Day7, Day8, Day9, Day10,
-  Day11, Day12, Day13, Day14, Day15, Day16
+  Day11, Day12, Day13, Day14, Day15, Day16, Day18
 ];
 
-program.version('0.16')
+program.version('0.18')
   .option('-d  --day <dayId>', 'ID of the day for which to calculate the puzzle')
   .option('-t --time', 'display timing information')
   .parse(process.argv);

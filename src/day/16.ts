@@ -1,7 +1,6 @@
 import { sum } from '../lib/sum';
 import sumBooleanArray from '../lib/sumBooleanArray';
 import groupLines from '../lib/groupLines';
-import { resolve } from 'dns';
 
 export const Day16 = {
   id: '16',
