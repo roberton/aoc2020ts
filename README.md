@@ -168,4 +168,7 @@ Skipping for now
 - Part 2 answer = ?
 - SCC: LOC = 1297, complexity = 205
 - Number of lets: 18
+
+## Day 19: Monster Messages
+- Part 1 answer = ?
 - 
