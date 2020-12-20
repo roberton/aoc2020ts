@@ -153,6 +153,9 @@ Rebuilt version using Map:
 
 ## Day 16
 - Part 1 answer = 27898
-- Part 2 answer = ?
-- SCC: LOC = 1162, complexity = 187
+- Part 2 answer = 2766491048287
+- SCC: LOC = 1243, complexity = 193
 - Number of lets: 16
+
+Didn't enjoy part 2 of this! Lots of rewriting of part 1, plus several days elapsed
+in between which didn't help. And several times there was one more thing to do... :-(

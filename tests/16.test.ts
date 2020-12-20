@@ -1,4 +1,4 @@
-import { parseRulesFromRulesSection, parseNearbyTickets } from '../src/day/16';
+import { parseRulesFromRulesSection, parseNearbyTickets, findValidFieldMappings, resolveFieldLogic, FieldOrder } from '../src/day/16';
 
 describe('parseRulesFromRulesSection', () => {
   it('should return correct 6 ranges from example data', () => {
@@ -32,15 +32,41 @@ describe('parseNearbyTickets', () => {
   });
 });
 
-// describe('findFieldMappings', () => {
-//   it('should work for example data', () => {
-//     const tickets = [
-//       { fields: 3, 9, 18 },
-//       { fields: 15, 1, 5 },
-//       { fields: 5, 14, 9 }
-//     ];
-//     const ranges = [
+describe('findValidFieldMappings', () => {
+  it('should work for example data for part 2', () => {
+    const tickets = [
+      { fields: [3, 9, 18] },
+      { fields: [15, 1, 5] },
+      { fields: [5, 14, 9] }
+    ];
+    const rules = [
+      { description: 'class', ranges: [{ min: 0, max: 1 }, { min: 4, max: 19 }] },
+      { description: 'row', ranges: [{ min: 0, max: 5 }, { min: 8, max: 19 }] },
+      { description: 'seat', ranges: [{ min: 0, max: 13 }, { min: 16, max: 19 }] }
+    ];
 
-//     ];
-//   });
-// });
+    const result = findValidFieldMappings(tickets, rules);
+
+    expect(result.length).toBe(3); // there are three fields
+    expect(result[0].isRuleValid).toEqual([false, true, false]); // first field must be 'row'
+    expect(result[1].isRuleValid).toEqual([true, true, false]); // second field must be 'class'
+    expect(result[2].isRuleValid).toEqual([true, true, true]); // third field must be 'seat'
+  });
+});
+
+describe('resolveFieldLogic', () => {
+  it('should resolve example values', () => {
+    const validFieldToRuleArray = [
+      { fieldIndex: 0, isRuleValid: [false, true, false] },
+      { fieldIndex: 1, isRuleValid: [true, true, false] },
+      { fieldIndex: 2, isRuleValid: [true, true, true] }
+    ];
+    const expected: FieldOrder[] = [
+      { fieldIndex: 0, ruleIndex: 1 },
+      { fieldIndex: 1, ruleIndex: 0 },
+      { fieldIndex: 2, ruleIndex: 2 }
+    ];
+
+    expect(resolveFieldLogic(validFieldToRuleArray)).toEqual(expected);
+  });
+});
