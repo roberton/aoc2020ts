@@ -14,5 +14,9 @@ export { Day13 } from './13';
 export { Day14 } from './14';
 export { Day15 } from './15';
 export { Day16 } from './16';
+// No Day 17
 export { Day18 } from './18';
 export { Day19 } from './19';
+// No Day 20
+// No Day 21
+export { Day22 } from './22';

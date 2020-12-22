@@ -1,5 +1,4 @@
 import groupLines from '../lib/groupLines';
-import { parseRulesFromRulesSection } from './16';
 
 export const Day19 = {
   id: '19',

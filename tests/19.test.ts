@@ -1,6 +1,6 @@
 import { parseRuleSection, parseRuleString, isMessageValid, isMessageValidSuper } from '../src/day/19';
 
-describe('parseRuleString', () => {
+describe.skip('parseRuleString', () => {
   it('should correct parse "1: "a"', () => {
     const expectedResult = {
       id: 1,
@@ -42,7 +42,7 @@ describe('parseRuleString', () => {
 //   });
 // });
 
-describe('isMessageValid', () => {
+describe.skip('isMessageValid', () => {
   const example1RuleStrings = [
     '0: 1 2',
     '1: "a"',
@@ -88,7 +88,7 @@ describe('isMessageValid', () => {
     expect(isMessageValidSuper('bbb', example1Rules)).toBe(false);
   });
 
-  it.only('should validate ababbb for example 2', () => {
+  it('should validate ababbb for example 2', () => {
     expect(isMessageValidSuper('ababbb', example2Rules)).toBe(true);
   });
 

@@ -171,4 +171,7 @@ Skipping for now
 
 ## Day 19: Monster Messages
 - Part 1 answer = ?
-- 
+
+Given up for now.
+
+## Day 22: 
