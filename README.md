@@ -174,4 +174,9 @@ Skipping for now
 
 Given up for now.
 
-## Day 22: 
+## Day 22: Crab Combat
+- Part 1 answer = 32083
+- Part 2 answer = ?
+- SCC: LOC = 1499, complexity = 226
+- Number lets: 19
+- 

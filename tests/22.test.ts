@@ -1,24 +1,27 @@
-import { playRound, playGame, calcScore } from '../src/day/22';
+import { playRound, playGame, calcScore, GameState } from '../src/day/22';
+
+const gameInitialState: GameState = {
+  p1Deck: [9, 2, 6, 3, 1],
+  p2Deck: [5, 8, 4, 7, 10],
+  rounds: 0,
+  result: 'inProgress'
+};
 
 describe('playRound', () => {
   it('should return correct decks for round of example', () => {
-    const p1Deck = [9, 2, 6, 3, 1];
-    const p2Deck = [5, 8, 4, 7, 10];
-    const [p1Result, p2Result] = playRound(p1Deck, p2Deck);
+    const result = playRound(gameInitialState);
 
-    expect(p1Result).toEqual([2, 6, 3, 1, 9, 5]);
-    expect(p2Result).toEqual([8, 4, 7, 10]);
+    expect(result.p1Deck).toEqual([2, 6, 3, 1, 9, 5]);
+    expect(result.p2Deck).toEqual([8, 4, 7, 10]);
+    expect(result.rounds).toBe(1);
   });
 });
 
 describe('playGame', () => {
   it('should show finished game for player 2', () => {
-    const p1Deck = [9, 2, 6, 3, 1];
-    const p2Deck = [5, 8, 4, 7, 10];
-    const [p1Result, p2Result] = playGame(p1Deck, p2Deck);
+    const result = playGame(gameInitialState);
 
-    expect(p1Result.length).toBe(0);
-    expect(p2Result.length).toBe(10);
+    expect(result.result).toBe('p2Won');
   });
 });
 
