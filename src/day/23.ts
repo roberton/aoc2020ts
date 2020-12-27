@@ -8,7 +8,6 @@ export const Day23 = {
 
 function star1 (lines: string[]): string {
   const game = startGame(lines[0]);
-  // const game = startGame('389125467');
   const finalGame = playGame(game, 100);
   const gameString = makeGameString(finalGame);
 
@@ -34,7 +33,6 @@ function startGame (line: string): Game {
   };
 }
 
-// This mutates the original
 export function playRound (game: Game): Game {
   const [threeCups, remainingCups] = removeThreeCups(game);
   const destinationCup = calcDestinationCup(remainingCups, game.currentCup);
@@ -49,7 +47,7 @@ export function playRound (game: Game): Game {
 }
 
 // Remove the three cups clockwise of the current cup
-// If current cup is the first, then that means ones at indexes 1 to 3.
+// Because we normalise the cups list, that just means the ones at indexes 1 to 3.
 function removeThreeCups (game: Game): number[][] {
   const threeCups = game.cups.splice(1, 3);
   return [threeCups, game.cups];
@@ -84,10 +82,10 @@ function selectCurrentCup (game: Game): number {
   return currentCup;
 }
 
-function playGame (game: Game, maxRounds: number): Game {
+export function playGame (game: Game, maxRounds: number): Game {
   let curGame = clonedeep(game);
   while (curGame.rounds < maxRounds) {
-    curGame = clonedeep(curGame);
+    // curGame = clonedeep(curGame);
     curGame = playRound(curGame);
     curGame = normaliseGame(curGame);
   }
@@ -104,7 +102,7 @@ export function normaliseGame (game: Game): Game {
   };
 }
 
-function makeGameString (game: Game): string {
+export function makeGameString (game: Game): string {
   const numberOneCupIndex = game.cups.indexOf(1);
   const cups = [
     ...game.cups.slice(numberOneCupIndex + 1),

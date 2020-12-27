@@ -1,4 +1,4 @@
-import { playRound, normaliseGame } from '../src/day/23';
+import { playRound, playGame, normaliseGame, makeGameString } from '../src/day/23';
 
 describe('playRound', () => {
   const initialGame = {
@@ -13,6 +13,22 @@ describe('playRound', () => {
     expect(result.currentCup).toEqual(2);
     expect(result.cups).toEqual([3, 2, 8, 9, 1, 5, 4, 6, 7]);
     expect(result.rounds).toBe(1);
+  });
+});
+
+describe('playGame and makeGameString', () => {
+  const initialGame = {
+    cups: [3, 8, 9, 1, 2, 5, 4, 6, 7],
+    currentCup: 3,
+    rounds: 0
+  };
+
+  it('should return return 92658374 after 10 rounds for example game', () => {
+    expect(makeGameString(playGame(initialGame, 10))).toBe('92658374');
+  });
+
+  it('should return return 67384529 after 100 rounds for example game', () => {
+    expect(makeGameString(playGame(initialGame, 100))).toBe('67384529');
   });
 });
 
