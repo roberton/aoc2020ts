@@ -20,3 +20,4 @@ export { Day19 } from './19';
 // No Day 20
 // No Day 21
 export { Day22 } from './22';
+export { Day23 } from './23';

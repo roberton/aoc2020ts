@@ -179,4 +179,8 @@ Given up for now.
 - Part 2 answer = ?
 - SCC: LOC = 1499, complexity = 226
 - Number lets: 19
+
+
+## Day 23: 
+- Part 1 answer = 76952348
 - 
