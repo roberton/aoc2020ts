@@ -119,4 +119,7 @@ describe('CircularList, removing items', () => {
       expect(list.getHead().previous.value).toBe(4); // item before head is new last items
     }
   });
+
+  it('should allow item to be inserted in the middle of the list', () => {
+  });
 });

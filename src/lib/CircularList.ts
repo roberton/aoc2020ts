@@ -47,11 +47,24 @@ export default class CircularList {
     node.next = this.head;
     this.size++;
 
-    console.log(`push() - size is now ${this.size}`);
-    this._debugEverything();
+    // console.log(`push() - size is now ${this.size}`);
+    // this._debugEverything();
+  }
+
+  insert (value: number, after: Node): Node {
+    const node = new Node(value);
+    node.previous = after;
+    node.next = after.next;
+    after.next.previous = node;
+    after.next = node;
+    this.size++;
+    // update head or tail?
+
+    return node;
   }
 
   // TODO: this is horrendous
+  // TODO: throw an exception if can't be found
   find (value: number): Node | undefined {
     let node = this.head;
     if (node.value === value) {
@@ -82,12 +95,12 @@ export default class CircularList {
     node.next.previous = node.previous;
     this.size--;
 
-    console.log(`remove() size now ${this.size}`);
-    this._debugEverything();
+    // console.log(`remove() size now ${this.size}`);
+    // this._debugEverything();
     return node.value;
   }
 
-  private _debugEverything (): void {
+  _debugEverything (): void {
     console.log('Going forward >>>');
     let curNode = this.head;
     for (let i = 0; i < this.size; i++) {
