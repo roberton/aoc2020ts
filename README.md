@@ -183,4 +183,6 @@ Given up for now.
 
 ## Day 23: 
 - Part 1 answer = 76952348
-- 
+
+
+First implementation would take 152 hours :-(
