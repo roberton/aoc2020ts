@@ -199,3 +199,22 @@ Results:
 so much faster, but going to need better
 
 v2.2: better destination cup searching
+1000 rounds = 216ms
+10_000 round = 1661ms => 10x = 7.7x slower GOOD
+20_000 round = 7218ms => 2x led 4.3x slower MIDDLING
+
+v2.3: skipping destination cup searching for common case
+Note: isn't working...
+1000 rounds = 240ms
+10_000 rounds = 1624ms => 10x = 6.5x slower
+20_000 rounds = 7214ms => 2x = 4.4x slower MIDDLING
+100_000 rounds = 122,218ms => 5x = 17x slower BAD
+The last figure is 2 minutes. If linear, 200 minutes = 3 hours. But probably a lot more...
+
+v2.4: searching from current node
+Forwards:
+10_000 rounds = 10,7393ms OUCH
+Backwards:
+10_000 rounds = 667ms. VERY GOOD
+20_000 rounds = 2,755ms. VERY GOOD
+100_000 rounds = 147,241ms. BAD. Slower than before. Where is the destination cup generally?

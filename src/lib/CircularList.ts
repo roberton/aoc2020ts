@@ -65,18 +65,18 @@ export default class CircularList {
 
   // TODO: this is horrendous
   // TODO: throw an exception if can't be found
-  find (value: number): Node | undefined {
-    let node = this.head;
+  find (value: number, startNode = this.head, anticlockwise = false): Node | undefined {
+    let node = startNode;
     if (node.value === value) {
       return node;
     }
-    node = node.next;
+    node = anticlockwise ? node.previous : node.next;
 
-    while (node !== this.head) {
+    while (node !== startNode) { // the circle is complete
       if (node.value === value) {
         return node;
       }
-      node = node.next;
+      node = anticlockwise ? node.previous : node.next;
     }
     return undefined;
   }

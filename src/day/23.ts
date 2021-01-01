@@ -6,6 +6,9 @@ export const Day23 = {
   star2
 };
 
+let destCupA = 0;
+let destCupB = 0;
+
 function star1 (lines: string[]): string {
   const game = startGame(lines[0]);
   // const game = startGame('389125467');
@@ -21,6 +24,8 @@ function star2 (lines: string[]): string {
   const cupsWithStars = findCupsWithStars(finalGame);
 
   console.log(`${JSON.stringify(cupsWithStars)}`);
+  console.log(`dest cup: quick find = ${destCupA}, slow find = ${destCupB}`);
+
   const starProduct = cupsWithStars[0] * cupsWithStars[1];
   return `${starProduct}`;
 }
@@ -49,8 +54,8 @@ export function playRound (game: Game): Game {
   // console.log(`playRound(round = ${game.rounds}) A: cups = ${makeGameString(game.cupsList)}`);
 
   const threeCups = removeThreeCups(game);
-  const destinationCup = calcDestinationCup(game);
-  placeThreeCups(game, threeCups, destinationCup);
+  const destinationCupNode = calcDestinationCup(game, threeCups);
+  placeThreeCups(game, threeCups, destinationCupNode);
 
   // console.log(`playRound(round = ${game.rounds}) C: cupsList = ${makeGameString(cupsList)}`);
   const currentCupNode = selectCurrentCup(game.currentCupNode);
@@ -82,25 +87,32 @@ function removeThreeCups (game: Game): number[] {
 }
 
 // The cup value one less than the current cup
-// Must be a cup in the current list, so if missing keep looking lower
+// Must be a cup in the current list, can't be in excludeList
 // Wrap around (back to high) if needed
-function calcDestinationCup (game: Game): number {
-  let destinationCup = game.currentCupNode.value - 1;
-  while (game.cupsList.find(destinationCup) === undefined) {
-    destinationCup--;
-    if (destinationCup < 1) destinationCup = game.maxCupValue;
+function calcDestinationCup (game: Game, excludeList: number[]): Node {
+  let destinationCupValue = game.currentCupNode.value - 1;
+  while (excludeList.includes(destinationCupValue) || destinationCupValue < 1) {
+    destinationCupValue--;
+    if (destinationCupValue < 1) destinationCupValue = game.maxCupValue;
   }
-  // console.log(`calcDestinationCup(${currentCup}) - returning ${destinationCup}`);
-  return destinationCup;
+
+  let destinationCupNode;
+  if (game.currentCupNode.previous.value === destinationCupValue) {
+    destinationCupNode = game.currentCupNode.previous;
+    destCupA++;
+  } else {
+    destinationCupNode = game.cupsList.find(destinationCupValue, game.currentCupNode, true);
+    destCupB++;
+  }
+
+  if (destinationCupNode === undefined) {
+    throw new Error(`calcDestinationCup(${game.currentCupNode.value}, ${JSON.stringify(excludeList)}) failed to find cup ${destinationCupValue}`);
+  }
+  return destinationCupNode;
 }
 
 // Place the three cups immediately clockwise of the destinationCup
-function placeThreeCups (game: Game, threeCups: number[], destinationCupValue: number): CircularList {
-  const destinationCupNode = game.cupsList.find(destinationCupValue);
-  if (destinationCupNode === undefined) {
-    throw new Error(`placeThreeCups() - unable to find cup with value ${destinationCupValue}`);
-  }
-
+function placeThreeCups (game: Game, threeCups: number[], destinationCupNode: Node): CircularList {
   const cups = game.cupsList;
   let insertNode = destinationCupNode;
   while (threeCups.length > 0) {
