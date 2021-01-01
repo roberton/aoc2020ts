@@ -186,3 +186,16 @@ Given up for now.
 
 
 First implementation would take 152 hours :-(
+Second implementation:
+1000 rounds = 298ms
+10_000 round = 8354ms => 10x led to 28x slower
+20_000 round = 39907ms => 2x led to 5x slower. Not good!
+
+v2.1: remember current cup as a node, rather than finding it all the time
+Results:
+1000 rounds = 236ms
+10_000 round = 3328ms => 10x = 14x slower
+20_000 round = 14200ms => 2x led 4x slower
+so much faster, but going to need better
+
+v2.2: better destination cup searching

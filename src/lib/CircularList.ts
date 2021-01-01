@@ -1,4 +1,4 @@
-class Node {
+export class Node {
   value: number;
   next: Node;
   previous: Node;
