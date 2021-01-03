@@ -218,3 +218,14 @@ Backwards:
 10_000 rounds = 667ms. VERY GOOD
 20_000 rounds = 2,755ms. VERY GOOD
 100_000 rounds = 147,241ms. BAD. Slower than before. Where is the destination cup generally?
+
+Optimised reverse finding from current node:
+10_000 rounds = 664ms.
+20_000 rounds = 2746ms.
+100_000 rounds = 158,185ms. 5x rounds = 57x slower
+
+10_000 test
+back five and then forward: 119,852ms
+back three and then forward: 138,486ms
+forward: 108,718ms
+reverse: 670ms

@@ -6,9 +6,6 @@ export const Day23 = {
   star2
 };
 
-let destCupA = 0;
-let destCupB = 0;
-
 function star1 (lines: string[]): string {
   const game = startGame(lines[0]);
   // const game = startGame('389125467');
@@ -20,11 +17,10 @@ function star1 (lines: string[]): string {
 
 function star2 (lines: string[]): string {
   const game = extendGame(startGame(lines[0]));
-  const finalGame = playGame(game, 10_000);
+  const finalGame = playGame(game, 10_000_000);
   const cupsWithStars = findCupsWithStars(finalGame);
 
   console.log(`${JSON.stringify(cupsWithStars)}`);
-  console.log(`dest cup: quick find = ${destCupA}, slow find = ${destCupB}`);
 
   const starProduct = cupsWithStars[0] * cupsWithStars[1];
   return `${starProduct}`;
@@ -96,15 +92,7 @@ function calcDestinationCup (game: Game, excludeList: number[]): Node {
     if (destinationCupValue < 1) destinationCupValue = game.maxCupValue;
   }
 
-  let destinationCupNode;
-  if (game.currentCupNode.previous.value === destinationCupValue) {
-    destinationCupNode = game.currentCupNode.previous;
-    destCupA++;
-  } else {
-    destinationCupNode = game.cupsList.find(destinationCupValue, game.currentCupNode, true);
-    destCupB++;
-  }
-
+  const destinationCupNode = game.cupsList.reverseFind(destinationCupValue, game.currentCupNode);
   if (destinationCupNode === undefined) {
     throw new Error(`calcDestinationCup(${game.currentCupNode.value}, ${JSON.stringify(excludeList)}) failed to find cup ${destinationCupValue}`);
   }
@@ -126,11 +114,12 @@ function selectCurrentCup (currentCup: Node): Node {
 }
 
 export function playGame (game: Game, maxRounds: number): Game {
+  const start = Date.now();
   let curGame = game;
   while (curGame.rounds < maxRounds) {
     curGame = playRound(curGame);
-    if ((curGame.rounds % 1000) === 0) {
-      console.log(`round: ${curGame.rounds}`);
+    if ((curGame.rounds % 10_000) === 0) {
+      console.log(`round: ${curGame.rounds} - elapsed time = ${Date.now() - start}ms`);
     }
   }
   return curGame;
